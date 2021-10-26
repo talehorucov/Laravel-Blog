@@ -13,3 +13,5 @@ Route::get('/forgot-password',[MainController::class,'forgot_passwordForm'])->na
 Route::post('/forgot-password',[MainController::class,'forgot_password'])->name('user.forgot.password');
 Route::get('/change-password',[MainController::class,'change_password'])->name('user.change.forgotpassword');
 Route::post('/update-password/{user}',[MainController::class,'update_password'])->name('user.update.forgotpassword');
+
+Route::get('admin/index',[MainController::class,'test']);

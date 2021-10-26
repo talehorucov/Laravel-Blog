@@ -77,4 +77,9 @@ class MainController extends Controller
 
         return redirect()->route('user.index')->with($notification);
     }
+
+    public function test()
+    {
+        return view('admin.index');
+    }
 }
