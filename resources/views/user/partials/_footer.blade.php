@@ -19,7 +19,7 @@
                                             <ul>
                                                 <li>
                                                     <span>
-                                                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                        <i class="fas fa-calendar-alt" aria-hidden="true"></i>
                                                     </span>November 11, 2017</li>
                                             </ul>
                                         </div>
@@ -39,7 +39,7 @@
                                             <ul>
                                                 <li>
                                                     <span>
-                                                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                        <i class="fas fa-calendar-alt" aria-hidden="true"></i>
                                                     </span>August 22, 2017</li>
                                             </ul>
                                         </div>
@@ -59,7 +59,7 @@
                                             <ul>
                                                 <li>
                                                     <span>
-                                                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                        <i class="fas fa-calendar-alt" aria-hidden="true"></i>
                                                     </span>March 31, 2017</li>
                                             </ul>
                                         </div>
@@ -199,41 +199,21 @@
                     <ul class="footer-social">
                         <li>
                             <a href="#" title="facebook">
-                                <i class="fa fa-facebook" aria-hidden="true"></i>
+                                <i class="fab fa-facebook-f" aria-hidden="true"></i>
                             </a>
                         </li>
                         <li>
                             <a href="#" title="twitter">
-                                <i class="fa fa-twitter" aria-hidden="true"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" title="google-plus">
-                                <i class="fa fa-google-plus" aria-hidden="true"></i>
+                                <i class="fab fa-twitter" aria-hidden="true"></i>
                             </a>
                         </li>
                         <li>
                             <a href="#" title="linkedin">
-                                <i class="fa fa-linkedin" aria-hidden="true"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" title="pinterest">
-                                <i class="fa fa-pinterest" aria-hidden="true"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" title="rss">
-                                <i class="fa fa-rss" aria-hidden="true"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" title="vimeo">
-                                <i class="fa fa-vimeo" aria-hidden="true"></i>
+                                <i class="fab fa-linkedin-in" aria-hidden="true"></i>
                             </a>
                         </li>
                     </ul>
-                    <p> © 2021 newsedge Designed by <a href="https://crackall.net/">CrackAll</a> </p>
+                    <p> © 2021 newsedge Designed by <a href="/">CrackAll</a> </p>
                 </div>
             </div>
         </div>

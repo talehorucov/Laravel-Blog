@@ -49,7 +49,7 @@
                 <div class="panel-heading">
                     <a aria-expanded="false" class="accordion-toggle collapsed" data-toggle="collapse"
                         data-parent="#accordion" href="#collapseTwo">
-                        <i class="fa fa-file-text" aria-hidden="true"></i>Post Pages</a>
+                        <i class="fas fa-file-alt" aria-hidden="true"></i>Post Pages</a>
                 </div>
                 <div aria-expanded="false" id="collapseTwo" role="tabpanel" class="panel-collapse collapse">
                     <div class="panel-body">
@@ -100,7 +100,7 @@
                 <div class="panel-heading">
                     <a aria-expanded="false" class="accordion-toggle collapsed" data-toggle="collapse"
                         data-parent="#accordion" href="#collapseFour">
-                        <i class="fa fa-picture-o" aria-hidden="true"></i>Gallery Pages</a>
+                        <i class="fas fa-images" aria-hidden="true"></i>Gallery Pages</a>
                 </div>
                 <div aria-expanded="false" id="collapseFour" role="tabpanel" class="panel-collapse collapse">
                     <div class="panel-body">

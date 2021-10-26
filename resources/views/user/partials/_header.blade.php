@@ -7,14 +7,15 @@
                         <div class="col-lg-8 col-md-12">
                             <ul class="news-info-list text-center--md">
                                 <li>
-                                    <i class="fa fa-map-marker" aria-hidden="true"></i>Azərbaycan, Bakı
+                                    <i class="fas fa-map-marker-alt" aria-hidden="true"></i>Azərbaycan, Bakı
                                 </li>
                                 <li>
-                                    <i class="fa fa-calendar" aria-hidden="true"></i>{{ Carbon\Carbon::now()->locale('az')->isoFormat('LL') }}
+                                    <i class="fas fa-calendar-alt"
+                                        aria-hidden="true"></i>{{ Carbon\Carbon::now()->locale('az')->isoFormat('LL') }}
                                 </li>
                                 <li>
-                                    <i class="fa fa-clock-o"
-                                        aria-hidden="true"></i>{{ Carbon\Carbon::now()->toTimeString()}}
+                                    <i class="fas fa-clock"
+                                        aria-hidden="true"></i>{{ Carbon\Carbon::now()->toTimeString() }}
                                 </li>
                             </ul>
                         </div>
@@ -22,37 +23,27 @@
                             <ul class="header-social">
                                 <li>
                                     <a href="#" title="facebook">
-                                        <i class="fa fa-facebook" aria-hidden="true"></i>
+                                        <i class="fab fa-facebook-f" aria-hidden="true"></i>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#" title="twitter">
-                                        <i class="fa fa-twitter" aria-hidden="true"></i>
+                                        <i class="fab fa-twitter" aria-hidden="true"></i>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#" title="google-plus">
-                                        <i class="fa fa-google-plus" aria-hidden="true"></i>
+                                        <i class="fab fa-google-plus-g" aria-hidden="true"></i>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#" title="linkedin">
-                                        <i class="fa fa-linkedin" aria-hidden="true"></i>
+                                        <i class="fab fa-linkedin-in" aria-hidden="true"></i>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#" title="pinterest">
-                                        <i class="fa fa-pinterest" aria-hidden="true"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" title="rss">
-                                        <i class="fa fa-rss" aria-hidden="true"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" title="vimeo">
-                                        <i class="fa fa-vimeo" aria-hidden="true"></i>
+                                        <i class="fab fa-pinterest-p" aria-hidden="true"></i>
                                     </a>
                                 </li>
                             </ul>
@@ -66,42 +57,16 @@
                 <div class="row no-gutters d-flex align-items-center">
                     <div class="col-lg-2 col-md-2 d-none d-lg-block">
                         <div class="logo-area">
-                            <a href="index.html" class="img-fluid">
+                            <a href="/" class="img-fluid">
                                 <img src="{{ asset('frontend/img/logo-dark.png') }}" alt="logo"
                                     class="img-fluid">
                             </a>
                         </div>
                     </div>
-                    <div class="col-lg-8 d-none d-lg-block position-static min-height-none">
+                    <div class="col-lg-7 d-none d-lg-block position-static min-height-none">
                         <div class="ne-main-menu">
                             <nav id="dropdown">
                                 <ul>
-                                    <li class="active">
-                                        <a href="#">Home</a>
-                                        <ul class="ne-dropdown-menu">
-                                            <li>
-                                                <a href="index.html">Home 1</a>
-                                            </li>
-                                            <li>
-                                                <a href="index2.html">Home 2</a>
-                                            </li>
-                                            <li>
-                                                <a href="index3.html">Home 3</a>
-                                            </li>
-                                            <li>
-                                                <a href="index4.html">Home 4</a>
-                                            </li>
-                                            <li>
-                                                <a href="index5.html">Home 5</a>
-                                            </li>
-                                            <li>
-                                                <a href="index6.html">Home 6</a>
-                                            </li>
-                                            <li class="active">
-                                                <a href="index7.html">Home 7</a>
-                                            </li>
-                                        </ul>
-                                    </li>
                                     <li>
                                         <a href="#">Post</a>
                                         <ul class="ne-dropdown-menu">
@@ -167,7 +132,7 @@
                             </nav>
                         </div>
                     </div>
-                    <div class="col-lg-2 col-md-2 col-sm-2 text-right position-static">
+                    <div class="col-lg-3 col-md-3 col-sm-3 text-right position-static">
                         <div class="header-action-item on-mobile-fixed">
                             <ul>
                                 <li>
@@ -175,15 +140,20 @@
                                         <input type="text" class="search-input" placeholder="Search...." required=""
                                             style="display: none;">
                                         <button class="search-button">
-                                            <i class="fa fa-search" aria-hidden="true"></i>
+                                            <i class="fas fa-search" aria-hidden="true"></i>
                                         </button>
                                     </form>
                                 </li>
-                                <li class="d-none d-sm-block d-md-block d-lg-none">
-                                    <button type="button" class="login-btn" data-toggle="modal"
-                                        data-target="#myModal">
-                                        <i class="fa fa-user" aria-hidden="true"></i>Sign in
-                                    </button>
+                                <li>
+                                    @auth
+                                        <a href="{{ route('user.loginForm') }}" class="login-btn">
+                                            <i class="fas fa-user" aria-hidden="true"></i>Hesabım
+                                        </a>
+                                    @else
+                                        <a href="{{ route('user.loginForm') }}" class="login-btn">
+                                            <i class="fas fa-user" aria-hidden="true"></i>Daxil Ol
+                                        </a>
+                                    @endauth
                                 </li>
                                 <li>
                                     <div id="side-menu-trigger" class="offcanvas-menu-btn offcanvas-btn-repoint">

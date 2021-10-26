@@ -27,3 +27,36 @@
 <script src="{{ asset('frontend/js/ticker.js') }}" type="text/javascript"></script>
 <!-- Custom Js -->
 <script src="{{ asset('frontend/js/main.js') }}" type="text/javascript"></script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+<script>
+    @if (Session::has('message'))
+        var type = "{{ Session::get('alert-type', 'info') }}"
+        switch(type){
+        case 'info':
+        toastr.info(" {{ Session::get('message') }} ");
+        break;
+    
+        case 'success':
+        toastr.success(" {{ Session::get('message') }} ");
+        break;
+    
+        case 'warning':
+        toastr.warning(" {{ Session::get('message') }} ");
+        break;
+    
+        case 'error':
+        toastr.error(" {{ Session::get('message') }} ");
+        break;
+        }
+    @endif
+</script>
+
+<script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    })
+</script>

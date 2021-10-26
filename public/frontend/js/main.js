@@ -42,9 +42,9 @@
             }, 1e3)
         })) : t.text("No more item to display"), !1
     }), e("nav#dropdown").meanmenu({
-        siteLogo: "<div class='mobile-menu-nav-back'><a href='index.html' class='logo-mobile'><img src='img/logo.png'/></a></div>"
+        siteLogo: "<div class='mobile-menu-nav-back'><a href='index.html' class='logo-mobile'></a></div>"
     }), (new WOW).init(), e.scrollUp({
-        scrollText: '<i class="fa fa-angle-double-up"></i>',
+        scrollText: '<i class="fas fa-angle-double-up"></i>',
         easingType: "linear",
         scrollSpeed: 900,
         animation: "fade"
@@ -253,7 +253,7 @@
             smartSpeed: r || 250,
             dots: !!l,
             nav: !!d,
-            navText: ['<i class="fa fa-angle-left" aria-hidden="true"></i>', '<i class="fa fa-angle-right" aria-hidden="true"></i>'],
+            navText: ['<i class="fas fa-angle-left" aria-hidden="true"></i>', '<i class="fas fa-angle-right" aria-hidden="true"></i>'],
             navSpeed: !!p,
             center: !!S,
             responsiveClass: !0,
