@@ -1,17 +1,5 @@
  $(document).ready(function () {
      "use strict";
-     // toat popup js
-     $.toast({
-         heading: 'Welcome to Ample admin',
-         text: 'Use the predefined ones, or specify a custom position object.',
-         position: 'top-right',
-         loaderBg: '#fff',
-         icon: 'warning',
-         hideAfter: 3500,
-         stack: 6
-     })
-
-
      //ct-visits
      new Chartist.Line('#ct-visits', {
          labels: ['2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015'],

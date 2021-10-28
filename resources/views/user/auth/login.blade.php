@@ -11,13 +11,19 @@
                 <div class="form-group">
                     <label>Email <span class="text-danger">*</span></label>
                     <input type="email" name="email" class="form-control" placeholder="Email ünvanı" />
+                    @error('email')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <label>Şifrə <span class="text-danger">*</span></label>
                     <input type="password" class="form-control" name="password" placeholder="Şifrə" />
+                    @error('password')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
                 </div>
                 @if ($message = session('error'))
-                    <span class="text-danger">{{ $message }}</span> 
+                    <span class="text-danger">{{ $message }}</span>
                 @endif
                 <div class="checkbox checkbox-primary">
                     <input id="checkbox" name="remember" type="checkbox">

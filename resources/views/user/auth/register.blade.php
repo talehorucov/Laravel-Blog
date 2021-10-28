@@ -20,11 +20,11 @@
                 <div class="form-group">
                     <label>Email <span class="text-danger">*</span></label>
                     <input type="email" name="email" class="form-control" placeholder="Email ünvanı" />
-                    @error('email')
-                        <span class="text-danger">
-                            {{ $message }}
+                    @if ($message = session('email'))
+                        <span class="text-danger" role="alert">
+                            <strong>{{ $message }}</strong>
                         </span>
-                    @enderror
+                    @endif
                 </div>
                 <div class="form-group">
                     <label>Şifrə <span class="text-danger">*</span></label>

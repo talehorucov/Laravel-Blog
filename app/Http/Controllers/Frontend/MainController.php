@@ -16,7 +16,7 @@ class MainController extends Controller
 {
     public function index()
     {
-        return view('user.index');   
+        return view('user.index');
     }
 
     public function loginForm()
@@ -43,7 +43,7 @@ class MainController extends Controller
 
     public function forgot_password(ForgotPasswordRequest $request)
     {
-        $user = User::where('email',$request->email)->first();
+        $user = User::where('email', $request->email)->first();
         if ($user) {
             $user->notify(new ForgotPasswordNotification($user));
             return redirect()->back()->with('success', 'Şifrənizi dəyişmək üçün link email ünvanınıza göndərildi');
@@ -54,7 +54,7 @@ class MainController extends Controller
     public function change_password(Request $request)
     {
         return $request;
-        return view('user.auth.forgot_password_change',compact('user'));
+        return view('user.auth.forgot_password_change', compact('user'));
     }
 
     public function registerForm()
@@ -64,22 +64,20 @@ class MainController extends Controller
 
     public function register(RegisterRequest $request)
     {
-        $user = new User();
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password = Hash::make($request->password);
-        $user->save();
+        $exists_user = User::where('email', $request->email)->first();
+        if (!$exists_user) {
+            $user = new User();
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->password = Hash::make($request->password);
+            $user->save();
 
-        $notification = [
-            'message' => 'Xoş Gəlmisiniz',
-            'alert-type' => 'success'
-        ];
-
-        return redirect()->route('user.index')->with($notification);
-    }
-
-    public function test()
-    {
-        return view('admin.index');
+            $notification = [
+                'message' => 'Xoş Gəlmisiniz',
+                'alert-type' => 'success'
+            ];
+            return redirect()->route('user.index')->with($notification);
+        }
+        return redirect()->back()->with('email', 'Bu email sistemdə mövcuddur.');
     }
 }
