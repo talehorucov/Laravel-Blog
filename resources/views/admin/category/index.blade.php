@@ -1,14 +1,19 @@
 @extends('admin.admin_master')
 @section('content')
 @section('title')
-    İstifadəçilər
+    Kateqoriyalar
 @endsection
 
 <div id="page-wrapper">
     <div class="container-fluid">
         <div class="row bg-title">
             <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                <h4 class="page-title">İstifadəçilər</h4>
+                <h4 class="page-title">Kateqoriyalar</h4>
+            </div>
+            <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                <a href="{{ route('admin.categories.create') }}"
+                    class="btn btn-danger pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light">
+                    Kateqoriya Əlavə Et</a>
             </div>
         </div>
         <div class="row">
@@ -19,45 +24,31 @@
                             <thead>
                                 <tr>
                                     <th width="70" class="text-center">#</th>
-                                    <th>Ad</th>
-                                    <th>EMAİL</th>
                                     <th>ŞƏKİL</th>
-                                    <th>QEYDİYYAT</th>
-                                    <th>VƏZİFƏ</th>
+                                    <th>KATEQORİYA ADI</th>
                                     <th width="300">İDARƏ ET</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($users as $user)
+                                @foreach ($categories as $category)
                                     <tr>
                                         <td class="text-center">{{ $loop->iteration }}</td>
                                         <td>
-                                            <span class="text-muted">{{ $user->name }}</span>
+                                            <img src="{{ $category->image }}" style="width:50px;height:50px" alt="">
                                         </td>
                                         <td>
-                                            <span class="text-muted">{{ $user->email }}</span>
+                                            <span class="text-muted">{{ $category->name }}</span>
                                         </td>
                                         <td>
-                                            <img src="{{ !empty($user->image) ? url('/').$user->image : url('backend/plugins/images/default.jpg') }}"
-                                            style="width:50px;height:50px" alt="">
-                                        </td>
-                                        <td>
-                                            <span class="text-muted">{{ $user->created_at }}</span>
-                                        </td>
-                                        <td>
-                                            <span
-                                                class="label label-danger">{{ $user->role->name ?? 'İstifadəçi' }}</span>
-                                        </td>
-                                        <td>
-                                            <a href="{{ route('admin.users.edit', $user) }}"
+                                            <a href="{{ route('admin.categories.edit', $category) }}"
                                                 class="btn btn-info btn-outline btn-circle btn-lg m-r-5">
                                                 <i class="ti-pencil"></i>
                                             </a>
-                                            <a href="{{ route('admin.users.show', $user) }}"
+                                            <a href="{{ route('admin.categories.show', $category) }}"
                                                 class="btn btn-info btn-outline btn-circle btn-lg m-r-5">
                                                 <i class="ti-info"></i>
                                             </a>
-                                            <a href="{{ route('admin.users.destroy', $user) }}"
+                                            <a href="{{ route('admin.categories.destroy', $category) }}"
                                                 class="btn btn-danger btn-outline btn-circle btn-lg m-r-5 delete">
                                                 <i class="ti-trash"></i>
                                             </a>

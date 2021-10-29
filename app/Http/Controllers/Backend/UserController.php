@@ -45,7 +45,7 @@ class UserController extends Controller
             $image = $request->file('image');
             $image_name = $request->name . '-' . hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
             Image::make($image)->resize(300, 300)->save('upload/users/' . $image_name);
-            $image_url = 'upload/users/' . $image_name;
+            $image_url = '/upload/users/' . $image_name;
             if ($user->image) {
                 File::delete($user->image);
             }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\MainController;
@@ -17,7 +18,10 @@ Route::group([
         Route::get('/logout',[MainController::class, 'logout'])->name('logout');
         
         Route::resource('users', UserController::class)->except('store','create','destroy');
-        Route::get('/delete/user/{user}',[UserController::class, 'destroy'])->name('user.dest');
+        Route::get('/delete/user/{user}',[UserController::class, 'destroy'])->name('users.destroy');
+        
+        Route::resource('categories', CategoryController::class)->except('destroy');
+        Route::get('/delete/category/{category}',[CategoryController::class, 'destroy'])->name('categories.destroy');
     });
 });
 

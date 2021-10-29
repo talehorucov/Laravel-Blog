@@ -35,7 +35,7 @@
             </li>
             <li class="dropdown">
                 <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#"> <img
-                        src="{{ !empty(auth()->user()->image) ? url('/') . '/' . auth()->user()->image : url('backend/plugins/images/default.jpg') }}"
+                        src="{{ !empty(auth()->user()->image) ? url('/') . auth()->user()->image : url('backend/plugins/images/default.jpg') }}"
                         alt="user-img" width="36" class="img-circle"><b
                         class="hidden-xs">{{ auth()->user()->name }}</b><span class="caret"></span>
                 </a>
@@ -43,7 +43,7 @@
                     <li>
                         <div class="dw-user-box">
                             <div class="u-img"><img
-                                    src="{{ !empty(auth()->user()->image) ? url('/') . '/' . auth()->user()->image : url('backend/plugins/images/default.jpg') }}"
+                                    src="{{ !empty(auth()->user()->image) ? url('/') . auth()->user()->image : url('backend/plugins/images/default.jpg') }}"
                                     alt="user" />
                             </div>
                             <div class="u-text">

@@ -1,14 +1,14 @@
 @extends('admin.admin_master')
 @section('content')
 @section('title')
-    İstifadəçilər
+    {{ $user->name }} Məlumat
 @endsection
 
 <div id="page-wrapper">
     <div class="container-fluid">
         <div class="row bg-title">
             <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                <h4 class="page-title">İstifadəçi Haqqında</h4>
+                <h4 class="page-title">{{ $user->name }} Haqqında</h4>
             </div>
         </div>
         <!--.row-->
@@ -45,7 +45,7 @@
                                     <label>Şəkli</label>
                                     <div>
                                         <img style="width: 100px; height:100px"
-                                            src="{{ !empty($user->image) ? url('/') . '/' . $user->image : url('backend/plugins/images/default.jpg') }}">
+                                            src="{{ !empty($user->image) ? url('/') . $user->image : url('backend/plugins/images/default.jpg') }}">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -55,7 +55,7 @@
                                             rows="5"> {{ $user->about }}</textarea>
                                     </div>
                                 </div>
-                            </formype=>
+                            </form>
                         </div>
                     </div>
                 </div>
