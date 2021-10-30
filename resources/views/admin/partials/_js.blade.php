@@ -34,6 +34,23 @@ type="text/javascript"></script>
 <script src="{{ asset('backend/js/jasny-bootstrap.js') }}"></script>
 <!--Sweet Alert -->
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- Summernote -->
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#summernote').summernote({
+            height: 250,
+        });
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        $('#summernote_disable').summernote({
+            height: 250,
+        });
+        $("#summernote_disable").summernote("disable");
+    });
+</script>
 <script>
     @if (Session::has('message'))
         var type = "{{ Session::get('alert-type', 'info') }}"
@@ -62,6 +79,50 @@ type="text/javascript"></script>
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
+    })
+</script>
+
+<script>
+    $(function() {
+        $(document).on('click', '.publish', function(e) {
+            e.preventDefault();
+            var link = $(this).attr("href");
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: 'btn btn-success ml-1',
+                    cancelButton: 'btn btn-danger mr-1'
+                },
+                buttonsStyling: false
+            })
+
+            swalWithBootstrapButtons.fire({
+                title: 'Əminsən ?',
+                text: "Status dəyişdirilsin ?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Bəli !',
+                cancelButtonText: 'Xeyr !',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = link;
+                    swalWithBootstrapButtons.fire(
+                        'Status',
+                        'Uğurla Dəyişdirildi',
+                        'success'
+                    )
+                } else if (
+                    /* Read more about handling dismissals below */
+                    result.dismiss === Swal.DismissReason.cancel
+                ) {
+                    swalWithBootstrapButtons.fire(
+                        'Ləğv Edildi!',
+                        'Məlumatlar Güvəndədir! ;)',
+                        'error'
+                    )
+                }
+            })
+        })
     })
 </script>
 
@@ -108,3 +169,4 @@ type="text/javascript"></script>
         })
     })
 </script>
+

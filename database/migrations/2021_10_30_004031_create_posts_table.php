@@ -13,10 +13,11 @@ class CreatePostsTable extends Migration
             $table->foreignId('user_id')->constrained();
             $table->string('title');
             $table->string('slug');
-            $table->text('content');
+            $table->longText('content');
             $table->string('thumbnail');
-            $table->boolean('publish');
-            $table->dateTime('published_at');
+            $table->foreignId('category_id')->constrained();
+            $table->boolean('publish')->default(false);
+            $table->timestamp('published_at')->useCurrent = true;
             $table->softDeletes();
             $table->timestamps();
         });

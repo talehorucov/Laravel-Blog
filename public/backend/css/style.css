@@ -433,9 +433,8 @@ hr {
 }
 
 .badge {
-    text-transform: uppercase;
     font-weight: 600;
-    padding: 3px 5px;
+    padding: 5px 19px;
     font-size: 12px;
     margin-top: 1px;
     background-color: #fb4
@@ -4346,7 +4345,8 @@ ul.common li a:hover {
 .table>tfoot>tr>th,
 .table>thead>tr>td,
 .table>thead>tr>th {
-    padding: 15px 8px
+    padding: 15px 8px;
+    vertical-align: middle;
 }
 
 .table-bordered>tbody>tr>td,
@@ -19715,10 +19715,6 @@ ul.pro-amenities li span i {
 
     .new-login-register .lg-info-panel {
         width: 450px
-    }
-
-    .new-login-register .new-login-box {
-        margin-left: 500px
     }
 }
 

@@ -18,4 +18,12 @@ class CategoryUpdateRequest extends FormRequest
             'image' => 'nullable|image|mimes:jpg,png,jpeg|max:3072'
         ];
     }
+
+    public function attributes()
+    {
+        return [
+            'name' => 'Ad',
+            'image' => 'Şəkil'
+        ];
+    }
 }

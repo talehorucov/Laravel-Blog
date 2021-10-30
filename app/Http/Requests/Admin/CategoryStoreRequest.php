@@ -10,12 +10,20 @@ class CategoryStoreRequest extends FormRequest
     {
         return true;
     }
-    
+
     public function rules()
     {
         return [
             'name' => 'required|min:2|max:100',
             'image' => 'image|mimes:jpg,png,jpeg|max:3072'
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'name' => 'Ad',
+            'image' => 'Şəkil'
         ];
     }
 }

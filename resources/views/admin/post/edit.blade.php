@@ -1,14 +1,14 @@
 @extends('admin.admin_master')
 @section('content')
 @section('title')
-    Kateqoriya Redaktə
+    Məqalə Redaktə Et
 @endsection
 
 <div id="page-wrapper">
     <div class="container-fluid">
         <div class="row bg-title">
             <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                <h4 class="page-title">Kateqoriya Redaktə Et</h4>
+                <h4 class="page-title">Məqalə Redaktə Et</h4>
             </div>
         </div>
         <!--.row-->
@@ -17,26 +17,43 @@
                 <div class="white-box">
                     <div class="row">
                         <div class="col-sm-12 col-xs-12">
-                            <form action="{{ route('admin.categories.update',$category) }}" method="POST"
+                            <form action="{{ route('admin.posts.update', $post) }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
                                 <div class="form-group">
-                                    <label>Kateqoriya adı</label>
+                                    <label>Başlıq</label>
                                     <div class="input-group">
                                         <div class="input-group-addon"><i class="ti-menu"></i></div>
-                                        <input type="text" class="form-control" name="name"
-                                            placeholder="Kateqoriya adı" value="{{ $category->name }}">
+                                        <input type="text" class="form-control" name="title"
+                                            placeholder="Məqalə başlığı" value="{{ $post->title }}">
                                     </div>
-                                    @error('name')
-                                        <span class="text-danger">{{ $message }}</span>
+                                    @error('title')
+                                        <span class="text-danger" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>Hazırki şəkil</label>
+                                    <label>Kateqoriya</label>
+                                    <select name="category_id" class="selectpicker m-r-10"
+                                        data-style="btn-danger btn-outline">
+                                        @foreach ($categories as $category)
+                                            <option value="{{ $category->id }}"
+                                                {{ $category->id == $post->category->id ? 'selected' : '' }}>
+                                                {{ $category->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('category_id')
+                                        <span class="text-danger" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label>Hazırki Şəkil</label>
                                     <div>
-                                        <img style="width: 100px; height:100px"
-                                            src="{{ asset($category->image) }}">
+                                        <img style="width: 300px; height:300px" src="{{ asset($post->thumbnail) }}">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -49,23 +66,24 @@
                                                 class="input-group-addon btn btn-default btn-file"> <span
                                                     class="fileinput-new">Şəkil seçin</span> <span
                                                     class="fileinput-exists">Dəyiş</span>
-                                                <input type="file" name="image"> </span> <a href="#"
+                                                <input type="file" name="thumbnail"> </span> <a href="#"
                                                 class="input-group-addon btn btn-default fileinput-exists"
                                                 data-dismiss="fileinput">Sil</a>
                                         </div>
                                     </div>
-                                    @error('image')
-                                        <span class="text-danger">{{ $message }}</span>
+                                    @error('thumbnail')
+                                        <span class="text-danger" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>Açıqlama</label>
-                                    <div>
-                                        <textarea name="description" class="form-control"
-                                            rows="4"> {{ $category->description }}</textarea>
-                                    </div>
-                                    @error('about')
-                                        <span class="text-danger">{{ $message }}</span>
+                                    <h3 class="box-title">Məzmun</h3>
+                                    <textarea id="summernote" name="content">{{ $post->content }}</textarea>
+                                    @error('content')
+                                        <span class="text-danger" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
                                     @enderror
                                 </div>
                                 <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">

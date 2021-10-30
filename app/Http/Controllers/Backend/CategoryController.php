@@ -28,7 +28,7 @@ class CategoryController extends Controller
         $image = $request->file('image');
         $image_name = $request->name . '-' . hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
         Image::make($image)->resize(300, 300)->save('upload/categories/' . $image_name);
-        $image_url = '/upload/categories/' . $image_name;
+        $image_url = 'upload/categories/' . $image_name;
         
         $category = new Category();
         $category->name = $request->name;
@@ -59,9 +59,9 @@ class CategoryController extends Controller
             $image = $request->file('image');
             $image_name = $request->name . '-' . hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
             Image::make($image)->resize(300, 300)->save('upload/categories/' . $image_name);
-            $image_url = '/upload/categories/' . $image_name;
+            $image_url = 'upload/categories/' . $image_name;
             if ($category->image) {
-                File::delete($category->image);
+                unlink($category->image);
             }
             $category->image = $image_url;
         }

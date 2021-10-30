@@ -20,4 +20,14 @@ class UserEditRequest extends FormRequest
             'image' => 'image|mimes:jpg,png,jpeg|max:3072'
         ];
     }
+
+    public function attributes()
+    {
+        return [
+            'name' => 'Ad',
+            'email' => 'Email',
+            'role_id' => 'Vəzifə',
+            'image' => 'Şəkil'
+        ];
+    }
 }

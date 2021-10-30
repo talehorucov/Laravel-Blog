@@ -45,7 +45,7 @@
                                     <label>Şəkli</label>
                                     <div>
                                         <img style="width: 100px; height:100px"
-                                            src="{{ !empty($user->image) ? url('/') . $user->image : url('backend/plugins/images/default.jpg') }}">
+                                            src="{{ !empty($user->image) ? asset($user->image) : url('backend/plugins/images/default.jpg') }}">
                                     </div>
                                 </div>
                                 <div class="form-group">

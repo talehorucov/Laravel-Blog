@@ -29,7 +29,7 @@
                                 <div class="form-group">
                                     <label>Şəkil</label>
                                     <div>
-                                        <img style="width: 100px; height:100px" src="{{ $category->image }}">
+                                        <img style="width: 100px; height:100px" src="{{ asset($category->image) }}">
                                     </div>
                                 </div>
                                 <div class="form-group">

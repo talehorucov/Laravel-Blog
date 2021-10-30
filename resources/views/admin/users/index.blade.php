@@ -38,7 +38,7 @@
                                             <span class="text-muted">{{ $user->email }}</span>
                                         </td>
                                         <td>
-                                            <img src="{{ !empty($user->image) ? url('/').$user->image : url('backend/plugins/images/default.jpg') }}"
+                                            <img src="{{ !empty($user->image) ? asset($user->image) : url('backend/plugins/images/default.jpg') }}"
                                             style="width:50px;height:50px" alt="">
                                         </td>
                                         <td>

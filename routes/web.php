@@ -4,6 +4,7 @@ use App\Http\Controllers\Backend\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\MainController;
+use App\Http\Controllers\Backend\PostController;
 use App\Http\Controllers\Frontend\MainController as UserMainController;
 
 Route::group([
@@ -22,6 +23,11 @@ Route::group([
         
         Route::resource('categories', CategoryController::class)->except('destroy');
         Route::get('/delete/category/{category}',[CategoryController::class, 'destroy'])->name('categories.destroy');
+        
+        Route::get('/inactive/posts/{post}', [PostController::class, 'inactive'])->name('posts.inactive');
+        Route::get('/active/posts/{post}', [PostController::class, 'active'])->name('posts.active');
+        Route::resource('posts', PostController::class)->except('destroy');
+        Route::get('/delete/post/{post}',[PostController::class, 'destroy'])->name('posts.destroy');
     });
 });
 

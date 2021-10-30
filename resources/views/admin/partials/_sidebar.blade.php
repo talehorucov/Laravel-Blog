@@ -7,7 +7,7 @@
         <div class="user-profile">
             <div class="dropdown user-pro-body">
                 <div>
-                    <img src="{{ !empty(auth()->user()->image) ? url('/') . auth()->user()->image : url('backend/plugins/images/default.jpg') }}"
+                    <img src="{{ !empty(auth()->user()->image) ? asset(auth()->user()->image) : url('backend/plugins/images/default.jpg') }}"
                         alt="user-img" class="img-circle">
                 </div>
                 <a href="#" class="dropdown-toggle u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true"
@@ -33,91 +33,29 @@
                 <a href="{{ route('admin.users.index') }}" class="waves-effect"><i class="mdi mdi-face fa-fw"></i>
                     <span class="hide-menu">İstifadəçilər</span>
                 </a>
-            </li>            
+            </li>
             <li>
-                <a href="{{ route('admin.categories.index') }}" class="waves-effect"><i class="mdi mdi-menu fa-fw"></i>
+                <a href="{{ route('admin.categories.index') }}" class="waves-effect">
+                    <i class="mdi mdi-menu fa-fw"></i>
                     <span class="hide-menu">Kateqoriyalar</span>
                 </a>
             </li>
-            <li> <a href="#" class="waves-effect"><i class="mdi mdi-content-copy fa-fw"></i> <span
-                        class="hide-menu">Sample Pages<span class="fa arrow"></span><span
-                            class="label label-rouded label-warning pull-right">30</span></span></a>
+            <li>
+                <a href="#" class="waves-effect">
+                    <i class="fas fa-newspaper fa-fw"></i>
+                    <span class="hide-menu">Məqalələr<span class="fa arrow"></span></span>
+                </a>
                 <ul class="nav nav-second-level">
-                    <li><a href="starter-page.html"><i class="ti-layout-width-default fa-fw"></i> <span
-                                class="hide-menu">Starter Page</span></a></li>
-                    <li><a href="blank.html"><i class="ti-layout-sidebar-left fa-fw"></i> <span
-                                class="hide-menu">Blank Page</span></a></li>
-                    <li><a href="javascript:void(0)" class="waves-effect"><i class="ti-email fa-fw"></i>
-                            <span class="hide-menu">Email Templates</span><span class="fa arrow"></span></a>
-                        <ul class="nav nav-third-level">
-                            <li> <a href="../email-templates/basic.html"><i class="fa-fw">B</i> <span
-                                        class="hide-menu">Basic</span></a></li>
-                            <li> <a href="../email-templates/alert.html"><i class="ti-alert fa-fw"></i> <span
-                                        class="hide-menu">Alert</span></a></li>
-                            <li> <a href="../email-templates/billing.html"><i class="ti-wallet fa-fw"></i>
-                                    <span class="hide-menu">Billing</span></a></li>
-                            <li> <a href="../email-templates/password-reset.html"><i class="ti-more fa-fw"></i> <span
-                                        class="hide-menu">Reset
-                                        Pwd</span></a></li>
-                        </ul>
+                    <li>
+                        <a href="{{ route('admin.posts.index') }}"><i class="fas fa-newspaper fa-fw"></i>
+                            <span class="hide-menu">Məqalələr</span>
+                        </a>
                     </li>
-                    <li><a href="javascript:void(0)" class="waves-effect"><i class="ti-lock fa-fw"></i><span
-                                class="hide-menu">Authentication</span><span class="fa arrow"></span></a>
-                        <ul class="nav nav-third-level">
-                            <li><a href="login.html"><i class="fa-fw">L</i> <span class="hide-menu">Login
-                                        Page</span></a></li>
-                            <li><a href="login2.html"><i class="fa-fw">L</i> <span class="hide-menu">Login
-                                        v2</span></a></li>
-                            <li><a href="register.html"><i class="fa-fw">R</i> <span
-                                        class="hide-menu">Register</span></a></li>
-                            <li><a href="register2.html"><i class="fa-fw">R</i> <span
-                                        class="hide-menu">Register v2</span></a></li>
-                            <li><a href="register3.html"><i class="fa-fw">3</i> <span class="hide-menu">3
-                                        Step Registration</span></a></li>
-                            <li><a href="recoverpw.html"><i class="fa-fw">R</i> <span
-                                        class="hide-menu">Recover Password</span></a></li>
-                            <li><a href="lock-screen.html"><i class="fa-fw">L</i> <span
-                                        class="hide-menu">Lock Screen</span></a></li>
-                        </ul>
+                    <li>
+                        <a href="{{ route('admin.posts.create') }}"><i class="fas fa-feather-alt fa-fw"></i>
+                            <span class="hide-menu">Məqalə Yarat</span>
+                        </a>
                     </li>
-                    <li><a href="javascript:void(0)" class="waves-effect"><i class="ti-info-alt fa-fw"></i><span
-                                class="hide-menu">Error
-                                Pages</span><span class="fa arrow"></span></a>
-                        <ul class="nav nav-third-level">
-                            <li><a href="400.html"><i class="ti-info-alt fa-fw"></i> <span class="hide-menu">Error
-                                        400</span></a></li>
-                            <li><a href="403.html"><i class="ti-info-alt fa-fw"></i> <span class="hide-menu">Error
-                                        403</span></a></li>
-                            <li><a href="404.html"><i class="ti-info-alt fa-fw"></i> <span class="hide-menu">Error
-                                        404</span></a></li>
-                            <li><a href="500.html"><i class="ti-info-alt fa-fw"></i> <span class="hide-menu">Error
-                                        500</span></a></li>
-                            <li><a href="503.html"><i class="ti-info-alt fa-fw"></i> <span class="hide-menu">Error
-                                        503</span></a></li>
-                        </ul>
-                    </li>
-                    <li><a href="lightbox.html"><i class="fa-fw">L</i> <span class="hide-menu">Lightbox
-                                Popup</span></a></li>
-                    <li><a href="treeview.html"><i class="fa-fw">T</i> <span
-                                class="hide-menu">Treeview</span></a></li>
-                    <li><a href="search-result.html"><i class="fa-fw">S</i> <span class="hide-menu">Search
-                                Result</span></a></li>
-                    <li><a href="utility-classes.html"><i class="fa-fw">U</i> <span
-                                class="hide-menu">Utility Classes</span></a></li>
-                    <li><a href="custom-scroll.html"><i class="fa-fw">C</i> <span
-                                class="hide-menu">Custom Scrolls</span></a></li>
-                    <li><a href="animation.html"><i class="fa-fw">A</i> <span
-                                class="hide-menu">Animations</span></a></li>
-                    <li><a href="profile.html"><i class="fa-fw">P</i> <span
-                                class="hide-menu">Profile</span></a></li>
-                    <li><a href="invoice.html"><i class="fa-fw">I</i> <span
-                                class="hide-menu">Invoice</span></a></li>
-                    <li><a href="faq.html"><i class="fa-fw">F</i> <span class="hide-menu">FAQ</span></a>
-                    </li>
-                    <li><a href="gallery.html"><i class="fa-fw">G</i> <span
-                                class="hide-menu">Gallery</span></a></li>
-                    <li><a href="pricing.html"><i class="fa-fw">P</i> <span
-                                class="hide-menu">Pricing</span></a></li>
                 </ul>
             </li>
             <li><a href="inbox.html" class="waves-effect"><i class="mdi mdi-apps fa-fw"></i> <span
@@ -161,16 +99,16 @@
                                 Addons</span></a></li>
                     <li><a href="form-material-elements.html"><i class="fa-fw">M</i><span
                                 class="hide-menu">Form Material</span></a></li>
-                    <li><a href="form-float-input.html"><i class="fa-fw">F</i><span
-                                class="hide-menu">Form Float Input</span></a></li>
+                    <li><a href="form-float-input.html"><i class="fa-fw">F</i><span class="hide-menu">Form
+                                Float Input</span></a></li>
                     <li><a href="form-upload.html"><i class="fa-fw">U</i><span class="hide-menu">File
                                 Upload</span></a></li>
                     <li><a href="form-mask.html"><i class="fa-fw">M</i><span class="hide-menu">Form
                                 Mask</span></a></li>
                     <li><a href="form-img-cropper.html"><i class="fa-fw">C</i><span
                                 class="hide-menu">Image Cropping</span></a></li>
-                    <li><a href="form-validation.html"><i class="fa-fw">V</i><span
-                                class="hide-menu">Form Validation</span></a></li>
+                    <li><a href="form-validation.html"><i class="fa-fw">V</i><span class="hide-menu">Form
+                                Validation</span></a></li>
                     <li><a href="form-dropzone.html"><i class="fa-fw">D</i><span class="hide-menu">File
                                 Dropzone</span></a></li>
                     <li><a href="form-pickers.html"><i class="fa-fw">P</i><span

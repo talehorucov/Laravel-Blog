@@ -17,5 +17,11 @@ class UserSeeder extends Seeder
             'role_id' => 1,
             'about' => 'Blog saytıma xoş gəlmisiniz. İrad və Təklifləriniz üçün email poçt ünvanıma yaza bilərsiz.'
         ]);
+
+        User::create([
+            'name' => 'Taleh Orucov',
+            'email' => 'talehorucov@gmail.com',
+            'password' => Hash::make('password'),
+        ]);
     }
 }

@@ -34,7 +34,7 @@
                                     <tr>
                                         <td class="text-center">{{ $loop->iteration }}</td>
                                         <td>
-                                            <img src="{{ $category->image }}" style="width:50px;height:50px" alt="">
+                                            <img src="{{ asset($category->image) }}" style="width:50px;height:50px" alt="">
                                         </td>
                                         <td>
                                             <span class="text-muted">{{ $category->name }}</span>
