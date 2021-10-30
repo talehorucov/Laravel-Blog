@@ -29,7 +29,7 @@
         <ul class="nav navbar-top-links navbar-right pull-right">
             <li>
                 <form role="search" class="app-search hidden-sm hidden-xs m-r-10">
-                    <input type="text" placeholder="Search..." class="form-control"> <a href=""><i
+                    <input type="text" placeholder="Axtar..." class="form-control"> <a href=""><i
                             class="fa fa-search"></i></a>
                 </form>
             </li>
@@ -48,19 +48,14 @@
                             </div>
                             <div class="u-text">
                                 <h4>{{ auth()->user()->name }}</h4>
-                                <p class="text-muted">{{ auth()->user()->email }}</p><a href="profile.html"
-                                    class="btn btn-rounded btn-danger btn-sm">View Profile</a>
+                                <p class="text-muted">{{ auth()->user()->email }}</p>
                             </div>
                         </div>
                     </li>
                     <li role="separator" class="divider"></li>
-                    <li><a href="#"><i class="ti-user"></i> My Profile</a></li>
-                    <li><a href="#"><i class="ti-wallet"></i> My Balance</a></li>
-                    <li><a href="#"><i class="ti-email"></i> Inbox</a></li>
+                    <li><a href="{{ route('admin.profile.index') }}"><i class="ti-user"></i> Hesabım</a></li>
                     <li role="separator" class="divider"></li>
-                    <li><a href="#"><i class="ti-settings"></i> Account Setting</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li><a href="#"><i class="fa fa-power-off"></i> Logout</a></li>
+                    <li><a href="{{ route('admin.logout') }}"><i class="fa fa-power-off"></i> Çıxış</a></li>
                 </ul>
                 <!-- /.dropdown-user -->
             </li>

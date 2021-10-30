@@ -15,7 +15,7 @@
             <div class="col-md-12">
                 <div class="panel">
                     <div class="table-responsive">
-                        <table class="table table-hover manage-u-table">
+                        <table class="table table-hover manage-u-table color-table purple-table">
                             <thead>
                                 <tr>
                                     <th width="70" class="text-center">#</th>

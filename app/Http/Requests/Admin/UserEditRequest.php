@@ -16,6 +16,7 @@ class UserEditRequest extends FormRequest
         return [
             'name' => 'required|min:2|max:50',
             'email' => 'required|email|max:255',
+            'phone' => 'max:30',
             'role_id' => 'nullable|exists:roles,id',
             'image' => 'image|mimes:jpg,png,jpeg|max:3072'
         ];
@@ -26,6 +27,7 @@ class UserEditRequest extends FormRequest
         return [
             'name' => 'Ad',
             'email' => 'Email',
+            'phone' => 'Nömrə',
             'role_id' => 'Vəzifə',
             'image' => 'Şəkil'
         ];

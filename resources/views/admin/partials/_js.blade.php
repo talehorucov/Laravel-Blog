@@ -36,6 +36,8 @@ type="text/javascript"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <!-- Summernote -->
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+<!-- Mask -->
+<script src="{{ asset('backend/js/mask.js') }}"></script>
 <script>
     $(document).ready(function() {
         $('#summernote').summernote({

@@ -35,10 +35,21 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                    <label>Telefon</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="ti-mobile"></i></div>
+                                        <input type="text" class="form-control" name="phone" placeholder="Telefon"
+                                            value="{{ $user->phone }}" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <label>Vəzifə</label>
                                     <select disabled name="role_id" class="selectpicker m-r-10"
                                         data-style="btn-danger btn-outline">
-                                        <option>{{ $user->role->name }}</option>
+                                        @if ($user->role)
+                                            <option>{{ $user->role->name }}</option>
+                                        @endif
+                                        <option>İstifadəçi</option>
                                     </select>
                                 </div>
                                 <div class="form-group">

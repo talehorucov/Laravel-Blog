@@ -44,6 +44,17 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
+                                    <label>Telefon</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="ti-mobile"></i></div>
+                                        <input type="text" class="form-control" name="phone" placeholder="Telefon"
+                                            value="{{ $user->phone }}">
+                                    </div>
+                                    @error('phone')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
                                     <label>Vəzifə</label>
                                     <select name="role_id" class="selectpicker m-r-10"
                                         data-style="btn-danger btn-outline">
@@ -61,7 +72,8 @@
                                 <div class="form-group">
                                     <label>Hazırki Şəkli</label>
                                     <div>
-                                        <img style="width: 100px; height:100px" src="{{ !empty($user->image) ? asset($user->image) : url('backend/plugins/images/default.jpg') }}">
+                                        <img style="width: 100px; height:100px"
+                                            src="{{ !empty($user->image) ? asset($user->image) : url('backend/plugins/images/default.jpg') }}">
                                     </div>
                                 </div>
                                 <div class="form-group">
