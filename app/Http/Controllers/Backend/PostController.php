@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Intervention\Image\Facades\Image;
 use App\Http\Requests\Admin\PostStoreRequest;
 use App\Http\Requests\Admin\PostUpdateRequest;
+use App\Models\Tag;
 
 class PostController extends Controller
 {
@@ -21,7 +22,8 @@ class PostController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('admin.post.store', compact('categories'));
+        $tags = Tag::all();
+        return view('admin.post.store', compact('categories','tags'));
     }
 
     public function store(PostStoreRequest $request)
@@ -39,6 +41,8 @@ class PostController extends Controller
         $post->thumbnail = $image_url;
         $post->save();
 
+        $post->tags()->attach($request->tags);
+        
         $notification = [
             'message' => 'Məqalə uğurla əlavə edildi',
             'alert-type' => 'success'
@@ -49,13 +53,15 @@ class PostController extends Controller
     public function show(Post $post)
     {
         $categories = Category::all();
-        return view('admin.post.show', compact('post', 'categories'));
+        $tags = Tag::all();
+        return view('admin.post.show', compact('post', 'categories','tags'));
     }
 
     public function edit(Post $post)
     {
         $categories = Category::all();
-        return view('admin.post.edit', compact('post', 'categories'));
+        $tags = Tag::all();
+        return view('admin.post.edit', compact('post', 'categories','tags'));
     }
 
     public function update(PostUpdateRequest $request, Post $post)
@@ -73,6 +79,8 @@ class PostController extends Controller
         $post->content = $request->content;
         $post->title = $request->title;
         $post->save();
+        
+        $post->tags()->sync($request->tags);
 
         $notification = [
             'message' => 'Məqalə redaktə edildi',

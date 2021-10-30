@@ -1,8 +1,7 @@
 <div class="navbar-default sidebar" role="navigation">
     <div class="sidebar-nav slimscrollsidebar">
         <div class="sidebar-head">
-            <h3><span class="fa-fw open-close"><i class="ti-close ti-menu"></i></span> <span
-                    class="hide-menu">Navigation</span></h3>
+            <h3><span class="fa-fw open-close"><i class="ti-close ti-menu"></i></span></h3>
         </div>
         <div class="user-profile">
             <div class="dropdown user-pro-body">
@@ -41,7 +40,7 @@
                 </a>
             </li>
             <li>
-                <a href="#" class="waves-effect">
+                <a href="{{ route('admin.posts.index') }}" class="waves-effect">
                     <i class="fas fa-newspaper fa-fw"></i>
                     <span class="hide-menu">Məqalələr<span class="fa arrow"></span></span>
                 </a>
@@ -57,6 +56,12 @@
                         </a>
                     </li>
                 </ul>
+            </li>
+            <li>
+                <a href="{{ route('admin.tags.index') }}" class="waves-effect">
+                    <i class="fas fa-tags fa-fw"></i>
+                    <span class="hide-menu">Etiketlər</span>
+                </a>
             </li>
             <li><a href="inbox.html" class="waves-effect"><i class="mdi mdi-apps fa-fw"></i> <span
                         class="hide-menu">Apps<span class="fa arrow"></span></span></a>

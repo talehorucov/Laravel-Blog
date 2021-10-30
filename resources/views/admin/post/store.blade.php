@@ -48,6 +48,15 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
+                                    <label>Etiket</label>
+                                    <select name="tags[]" class="selectpicker m-r-10" multiple
+                                        data-style="btn-primary btn-outline">
+                                        @foreach ($tags as $tag)
+                                            <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group">
                                     <label>Şəkil</label>
                                     <div>
                                         <div class="fileinput fileinput-new input-group" data-provides="fileinput">

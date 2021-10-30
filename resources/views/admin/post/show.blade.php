@@ -48,6 +48,19 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
+                                    <label>Etiket</label>
+                                    <select name="tags[]" class="selectpicker m-r-10" multiple
+                                        data-style="btn-primary btn-outline" disabled>
+                                        @foreach ($tags as $tag)
+                                            <option
+                                                @foreach ($post->tags as $post_tag)
+                                                {{ in_array($tag->id, $post->tags->pluck('id')->toArray()) ?'selected' : null }}
+                                                @endforeach>
+                                        {{ $tag->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group">
                                     <label>Şəkil</label>
                                     <div>
                                         <img style="width: 300px; height:300px" src="{{ asset($post->thumbnail) }}">

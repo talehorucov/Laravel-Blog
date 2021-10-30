@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\MainController;
 use App\Http\Controllers\Backend\PostController;
+use App\Http\Controllers\Backend\TagController;
 use App\Http\Controllers\Frontend\MainController as UserMainController;
 
 Route::group([
@@ -16,18 +17,27 @@ Route::group([
 
     Route::group(['middleware' => 'IsAdmin'], function () {
         Route::get('/index', [MainController::class, 'index'])->name('index');
-        Route::get('/logout',[MainController::class, 'logout'])->name('logout');
-        
-        Route::resource('users', UserController::class)->except('store','create','destroy');
-        Route::get('/delete/user/{user}',[UserController::class, 'destroy'])->name('users.destroy');
-        
-        Route::resource('categories', CategoryController::class)->except('destroy');
-        Route::get('/delete/category/{category}',[CategoryController::class, 'destroy'])->name('categories.destroy');
-        
+        Route::get('/logout', [MainController::class, 'logout'])->name('logout');
+
+        Route::resource('users', UserController::class)->except('store', 'create', 'destroy');
+        Route::get('/delete/user/{user}', [UserController::class, 'destroy'])->name('users.destroy');
+
+        Route::resource('categories', CategoryController::class)->except('destroy')->parameters([
+            'categories' => 'category:slug',
+        ]);
+        Route::get('/delete/category/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
+
         Route::get('/inactive/posts/{post}', [PostController::class, 'inactive'])->name('posts.inactive');
         Route::get('/active/posts/{post}', [PostController::class, 'active'])->name('posts.active');
-        Route::resource('posts', PostController::class)->except('destroy');
-        Route::get('/delete/post/{post}',[PostController::class, 'destroy'])->name('posts.destroy');
+        Route::resource('posts', PostController::class)->except('destroy')->parameters([
+            'posts' => 'post:slug',
+        ]);
+        Route::get('/delete/post/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
+
+        Route::resource('tags', TagController::class)->except('show', 'destroy')->parameters([
+            'tags' => 'tag:slug',
+        ]);;
+        Route::get('/delete/tag/{tag}', [TagController::class, 'destroy'])->name('tags.destroy');
     });
 });
 
