@@ -9,6 +9,8 @@ use App\Http\Requests\User\RegisterRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\User\UserLoginRequest;
+use App\Models\Category;
+use App\Models\Post;
 use App\Models\User;
 use App\Notifications\ForgotPasswordNotification;
 
@@ -16,7 +18,10 @@ class MainController extends Controller
 {
     public function index()
     {
-        return view('user.index');
+        $posts = Post::all();
+        $random_posts = Post::inRandomOrder()->limit(3)->get();
+        $categories = Category::all();
+        return view('user.index',compact('posts','categories'));
     }
 
     public function loginForm()

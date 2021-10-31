@@ -13,9 +13,9 @@
                         <div id="ensign-nivoslider-3" class="slides">
                             <img src="{{ asset('frontend/img/banner/slide1.jpg') }}" alt="slider"
                                 title="#slider-direction-1" />
-                            <img src="{{ asset('frontend/img/banner/slide2.jpg') }}" alt="slider"
+                            <img src="{{ asset('frontend/img/banner/slide1.jpg') }}" alt="slider"
                                 title="#slider-direction-2" />
-                            <img src="{{ asset('frontend/img/banner/slide3.jpg') }}" alt="slider"
+                            <img src="{{ asset('frontend/img/banner/slide1.jpg') }}" alt="slider"
                                 title="#slider-direction-3" />
                         </div>
                         <!-- direction 1 -->
@@ -45,10 +45,10 @@
                         </div>
                         <!-- direction 2 -->
                         <div id="slider-direction-2" class="t-cn slider-direction">
-                            <div class="slider-content s-tb slide-2">
+                            <div class="slider-content s-tb slide-1">
                                 <div class="title-container s-tb-c">
                                     <div class="text-left pl-50 pl20-xs">
-                                        <div class="topic-box-sm color-cinnabar mb-20">Chicken Pizza</div>
+                                        <div class="topic-box-sm color-cinnabar mb-20">Beef Pizza</div>
                                         <div class="post-date-light d-none d-sm-block">
                                             <ul>
                                                 <li>
@@ -62,18 +62,18 @@
                                                 </li>
                                             </ul>
                                         </div>
-                                        <div class="slider-title">Chicken Pizza with summer drinks recipe by mr. nanna
-                                            products</div>
+                                        <div class="slider-title">Dhakaika Boti kebab is here summer drinks Recipe by
+                                            Healthy Kadai</div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <!-- direction 3 -->
+                        <!-- direction 3-->
                         <div id="slider-direction-3" class="t-cn slider-direction">
-                            <div class="slider-content s-tb slide-3">
+                            <div class="slider-content s-tb slide-1">
                                 <div class="title-container s-tb-c">
                                     <div class="text-left pl-50 pl20-xs">
-                                        <div class="topic-box-sm color-cinnabar mb-20">Vegetable Roll</div>
+                                        <div class="topic-box-sm color-cinnabar mb-20">Beef Pizza</div>
                                         <div class="post-date-light d-none d-sm-block">
                                             <ul>
                                                 <li>
@@ -87,8 +87,8 @@
                                                 </li>
                                             </ul>
                                         </div>
-                                        <div class="slider-title">Vegetable Roll is here for your healthy, red chili
-                                            spicy breakfast</div>
+                                        <div class="slider-title">Dhakaika Boti kebab is here summer drinks Recipe by
+                                            Healthy Kadai</div>
                                     </div>
                                 </div>
                             </div>
@@ -382,7 +382,7 @@
             <div class="col-xl-8 col-lg-12 mb-30">
                 <div class="item-box-light-md-less30 ie-full-width">
                     <div class="topic-border color-cinnabar mb-30">
-                        <div class="topic-box-lg color-cinnabar">Food Reviews</div>
+                        <div class="topic-box-lg color-cinnabar">Son Rəylər</div>
                     </div>
                     <div class="row">
                         <div class="col-lg-12 col-md-6 col-sm-12">
@@ -529,34 +529,6 @@
                 </div>
             </div>
             <div class="ne-sidebar sidebar-break-lg col-xl-4 col-lg-12">
-                <div class="sidebar-box item-box-light-md">
-                    <div class="topic-border color-cinnabar mb-30">
-                        <div class="topic-box-lg color-cinnabar">Stay Connected</div>
-                    </div>
-                    <ul class="stay-connected-color overflow-hidden">
-                        <li class="facebook">
-                            <a href="#">
-                                <i class="fab fa-facebook-f" aria-hidden="true"></i>
-                                <div class="connection-quantity">50.2 k</div>
-                                <p>Fans</p>
-                            </a>
-                        </li>
-                        <li class="twitter">
-                            <a href="#">
-                                <i class="fab fa-twitter" aria-hidden="true"></i>
-                                <div class="connection-quantity">10.3 k</div>
-                                <p>Followers</p>
-                            </a>
-                        </li>
-                        <li class="linkedin">
-                            <a href="#">
-                                <i class="fab fa-linkedin-in" aria-hidden="true"></i>
-                                <div class="connection-quantity">25.4 k</div>
-                                <p>Fans</p>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
                 <div class="sidebar-box item-box-light-md-less30">
                     <ul class="btn-tab item-inline block-xs nav nav-tabs" role="tablist">
                         <li class="nav-item">
@@ -841,264 +813,40 @@
     </div>
 </section>
 <!-- Latest Articles Area End Here -->
-<!-- Videos Area Start Here -->
-<section class="bg-secondary-body section-space-default">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="topic-border color-cinnabar mb-30 width-100">
-                    <div class="topic-box-lg color-cinnabar">Watch Videos</div>
-                </div>
-            </div>
-        </div>
-        <div class="ne-carousel nav-control-top2 color-white2" data-loop="true" data-items="3" data-margin="10"
-            data-autoplay="true" data-autoplay-timeout="5000" data-smart-speed="2000" data-dots="false" data-nav="true"
-            data-nav-speed="false" data-r-x-small="1" data-r-x-small-nav="true" data-r-x-small-dots="false"
-            data-r-x-medium="1" data-r-x-medium-nav="true" data-r-x-medium-dots="false" data-r-small="2"
-            data-r-small-nav="true" data-r-small-dots="false" data-r-medium="2" data-r-medium-nav="true"
-            data-r-medium-dots="false" data-r-Large="3" data-r-Large-nav="true" data-r-Large-dots="false">
-            <div class="img-overlay-70-c">
-                <div class="mask-content-sm">
-                    <div class="topic-box-sm color-cod-gray mb-20">Food</div>
-                    <h3 class="title-medium-light">
-                        <a href="single-news-3.html">Gym Fitness area coverded they Governed this in 2017</a>
-                    </h3>
-                </div>
-                <div class="text-center">
-                    <a class="play-btn popup-youtube" href="http://www.youtube.com/watch?v=1iIZeIy7TqM">
-                        <img src="{{ asset('frontend/img/banner/play.png') }}" alt="play" class="img-fluid">
-                    </a>
-                </div>
-                <img src="{{ asset('frontend/img/news/news291.jpg') }}" alt="news" class="img-fluid width-100">
-            </div>
-            <div class="img-overlay-70-c">
-                <div class="mask-content-sm">
-                    <div class="topic-box-sm color-cod-gray mb-20">Desert</div>
-                    <h3 class="title-medium-light">
-                        <a href="single-news-3.html">Gym Fitness area coverded they Governed this in 2017</a>
-                    </h3>
-                </div>
-                <div class="text-center">
-                    <a class="play-btn popup-youtube" href="http://www.youtube.com/watch?v=1iIZeIy7TqM">
-                        <img src="{{ asset('frontend/img/banner/play.png') }}" alt="play" class="img-fluid">
-                    </a>
-                </div>
-                <img src="{{ asset('frontend/img/news/news292.jpg') }}" alt="news" class="img-fluid width-100">
-            </div>
-            <div class="img-overlay-70-c">
-                <div class="mask-content-sm">
-                    <div class="topic-box-sm color-cod-gray mb-20">Chines</div>
-                    <h3 class="title-medium-light">
-                        <a href="single-news-3.html">Gym Fitness area coverded they Governed this in 2017</a>
-                    </h3>
-                </div>
-                <div class="text-center">
-                    <a class="play-btn popup-youtube" href="http://www.youtube.com/watch?v=1iIZeIy7TqM">
-                        <img src="{{ asset('frontend/img/banner/play.png') }}" alt="play" class="img-fluid">
-                    </a>
-                </div>
-                <img src="{{ asset('frontend/img/news/news293.jpg') }}" alt="news" class="img-fluid width-100">
-            </div>
-            <div class="img-overlay-70-c">
-                <div class="mask-content-sm">
-                    <div class="topic-box-sm color-cod-gray mb-20">Food</div>
-                    <h3 class="title-medium-light">
-                        <a href="single-news-3.html">Gym Fitness area coverded they Governed this in 2017</a>
-                    </h3>
-                </div>
-                <div class="text-center">
-                    <a class="play-btn popup-youtube" href="http://www.youtube.com/watch?v=1iIZeIy7TqM">
-                        <img src="{{ asset('frontend/img/banner/play.png') }}" alt="play" class="img-fluid">
-                    </a>
-                </div>
-                <img src="{{ asset('frontend/img/news/news291.jpg') }}" alt="news" class="img-fluid width-100">
-            </div>
-            <div class="img-overlay-70-c">
-                <div class="mask-content-sm">
-                    <div class="topic-box-sm color-cod-gray mb-20">Desert</div>
-                    <h3 class="title-medium-light">
-                        <a href="single-news-3.html">Gym Fitness area coverded they Governed this in 2017</a>
-                    </h3>
-                </div>
-                <div class="text-center">
-                    <a class="play-btn popup-youtube" href="http://www.youtube.com/watch?v=1iIZeIy7TqM">
-                        <img src="{{ asset('frontend/img/banner/play.png') }}" alt="play" class="img-fluid">
-                    </a>
-                </div>
-                <img src="{{ asset('frontend/img/news/news292.jpg') }}" alt="news" class="img-fluid width-100">
-            </div>
-            <div class="img-overlay-70-c">
-                <div class="mask-content-sm">
-                    <div class="topic-box-sm color-cod-gray mb-20">Chines</div>
-                    <h3 class="title-medium-light">
-                        <a href="single-news-3.html">Gym Fitness area coverded they Governed this in 2017</a>
-                    </h3>
-                </div>
-                <div class="text-center">
-                    <a class="play-btn popup-youtube" href="http://www.youtube.com/watch?v=1iIZeIy7TqM">
-                        <img src="{{ asset('frontend/img/banner/play.png') }}" alt="play" class="img-fluid">
-                    </a>
-                </div>
-                <img src="{{ asset('frontend/img/news/news293.jpg') }}" alt="news" class="img-fluid width-100">
-            </div>
-        </div>
-    </div>
-</section>
-<!-- Videos Area Start Here -->
 <!-- Category Area Start Here -->
 <section class="bg-body section-space-less10">
     <div class="container">
+        <div class="topic-border color-cinnabar mb-30">
+            <div class="topic-box-lg color-cinnabar">Kateqoriyalar</div>
+            <div class="more-info-link">
+                <a href="{{ route('user.category.index') }}">Daha çox
+                    <i class="fas fa-angle-right" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
         <div class="row tab-space5">
-            <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                <div class="category-box-layout1 overlay-dark-level-2 img-grayscale-hover text-center mb-10">
-                    <img src="{{ asset('frontend/img/category/ctg10.jpg') }}" alt="news"
-                        class="img-fluid width-100">
-                    <div class="content p-30-r">
-                        <div class="ctg-title-xs">Food</div>
-                        <h3 class="title-regular-light size-lg">
-                            <a href="post-style-1.html">Boti kebab is here summer drinks Recipe by Healthy Kadai</a>
-                        </h3>
-                        <div class="post-date-light d-block d-sm-none d-md-block">
-                            <ul>
-                                <li>
-                                    <span>by</span>
-                                    <a href="single-news-1.html">Adams</a>
-                                </li>
-                                <li>
-                                    <span>
-                                        <i class="fas fa-calendar" aria-hidden="true"></i>
-                                    </span>March 22, 2017
-                                </li>
-                            </ul>
+            @foreach ($categories as $category)
+                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                    <div class="category-box-layout1 overlay-dark-level-2 img-grayscale-hover text-center mb-10">
+                        <img src="{{ $category->image }}" alt="category" class="img-fluid width-100">
+                        <div class="content p-30-r">
+                            <div class="ctg-title-xs">{{ $category->name }}</div>
+                            <h3 class="title-regular-light size-lg">
+                                <a href="post-style-1.html">{{ $category->description }}</a>
+                            </h3>
+                            <div class="post-date-light d-block d-sm-none d-md-block">
+                                <ul>
+                                    <li>
+                                        <span>
+                                            <i class="fas fa-calendar" aria-hidden="true"></i>
+                                        </span>{{ Carbon\Carbon::parse($category->created_at)->locale('az')->isoFormat('LL') }}
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                <div class="category-box-layout1 overlay-dark-level-2 img-grayscale-hover text-center mb-10">
-                    <img src="{{ asset('frontend/img/category/ctg11.jpg') }}" alt="news"
-                        class="img-fluid width-100">
-                    <div class="content p-30-r">
-                        <div class="ctg-title-xs">Food</div>
-                        <h3 class="title-regular-light size-lg">
-                            <a href="post-style-1.html">Boti kebab is here summer drinks Recipe by Healthy Kadai</a>
-                        </h3>
-                        <div class="post-date-light d-block d-sm-none d-md-block">
-                            <ul>
-                                <li>
-                                    <span>by</span>
-                                    <a href="single-news-1.html">Adams</a>
-                                </li>
-                                <li>
-                                    <span>
-                                        <i class="fas fa-calendar" aria-hidden="true"></i>
-                                    </span>March 22, 2017
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                <div class="category-box-layout1 overlay-dark-level-2 img-grayscale-hover text-center mb-10">
-                    <img src="{{ asset('frontend/img/category/ctg12.jpg') }}" alt="news"
-                        class="img-fluid width-100">
-                    <div class="content p-30-r">
-                        <div class="ctg-title-xs">Food</div>
-                        <h3 class="title-regular-light size-lg">
-                            <a href="post-style-1.html">Boti kebab is here summer drinks Recipe by Healthy Kadai</a>
-                        </h3>
-                        <div class="post-date-light d-block d-sm-none d-md-block">
-                            <ul>
-                                <li>
-                                    <span>by</span>
-                                    <a href="single-news-1.html">Adams</a>
-                                </li>
-                                <li>
-                                    <span>
-                                        <i class="fas fa-calendar" aria-hidden="true"></i>
-                                    </span>March 22, 2017
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                <div class="category-box-layout1 overlay-dark-level-2 img-grayscale-hover text-center mb-10">
-                    <img src="{{ asset('frontend/img/category/ctg13.jpg') }}" alt="news"
-                        class="img-fluid width-100">
-                    <div class="content p-30-r">
-                        <div class="ctg-title-xs">Food</div>
-                        <h3 class="title-regular-light size-lg">
-                            <a href="post-style-1.html">Boti kebab is here summer drinks Recipe by Healthy Kadai</a>
-                        </h3>
-                        <div class="post-date-light d-block d-sm-none d-md-block">
-                            <ul>
-                                <li>
-                                    <span>by</span>
-                                    <a href="single-news-1.html">Adams</a>
-                                </li>
-                                <li>
-                                    <span>
-                                        <i class="fas fa-calendar" aria-hidden="true"></i>
-                                    </span>March 22, 2017
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                <div class="category-box-layout1 overlay-dark-level-2 img-grayscale-hover text-center mb-10">
-                    <img src="{{ asset('frontend/img/category/ctg14.jpg') }}" alt="news"
-                        class="img-fluid width-100">
-                    <div class="content p-30-r">
-                        <div class="ctg-title-xs">Food</div>
-                        <h3 class="title-regular-light size-lg">
-                            <a href="post-style-1.html">Boti kebab is here summer drinks Recipe by Healthy Kadai</a>
-                        </h3>
-                        <div class="post-date-light d-block d-sm-none d-md-block">
-                            <ul>
-                                <li>
-                                    <span>by</span>
-                                    <a href="single-news-1.html">Adams</a>
-                                </li>
-                                <li>
-                                    <span>
-                                        <i class="fas fa-calendar" aria-hidden="true"></i>
-                                    </span>March 22, 2017
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                <div class="category-box-layout1 overlay-dark-level-2 img-grayscale-hover text-center mb-10">
-                    <img src="{{ asset('frontend/img/category/ctg15.jpg') }}" alt="news"
-                        class="img-fluid width-100">
-                    <div class="content p-30-r">
-                        <div class="ctg-title-xs">Food</div>
-                        <h3 class="title-regular-light size-lg">
-                            <a href="post-style-1.html">Boti kebab is here summer drinks Recipe by Healthy Kadai</a>
-                        </h3>
-                        <div class="post-date-light d-block d-sm-none d-md-block">
-                            <ul>
-                                <li>
-                                    <span>by</span>
-                                    <a href="single-news-1.html">Adams</a>
-                                </li>
-                                <li>
-                                    <span>
-                                        <i class="fas fa-calendar" aria-hidden="true"></i>
-                                    </span>March 22, 2017
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </section>

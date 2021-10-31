@@ -475,7 +475,7 @@ h3.title-regular-light {
 }
 
 h3.title-regular-light a {
-    color: #fff;
+    color: #cca;
     -webkit-transition: all .5s ease-out;
     -moz-transition: all .5s ease-out;
     -ms-transition: all .5s ease-out;
@@ -4892,7 +4892,7 @@ div#wrapper.open>.offcanvas-mask {
 }
 
 .category-box-layout1 .ctg-title-xs {
-    font-size: 12px;
+    font-size: 20px;
     font-weight: 700;
     text-transform: uppercase;
     color: #fff;

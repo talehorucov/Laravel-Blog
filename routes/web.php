@@ -7,7 +7,9 @@ use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\MainController;
 use App\Http\Controllers\Backend\PostController;
 use App\Http\Controllers\Backend\TagController;
+use App\Http\Controllers\Frontend\CategoryController as FrontendCategoryController;
 use App\Http\Controllers\Frontend\MainController as UserMainController;
+use App\Http\Controllers\Frontend\PostController as FrontendPostController;
 
 Route::group([
     'prefix' => 'admin',
@@ -44,14 +46,20 @@ Route::group([
             'tags' => 'tag:slug',
         ]);;
         Route::get('/delete/tag/{tag}', [TagController::class, 'destroy'])->name('tags.destroy');
-        
+
         //////////////////////////////// Admin Profile
         Route::prefix('profile')->group(function () {
-            Route::get('/my',[AdminProfileController::class,'index'])->name('profile.index');
+            Route::get('/my', [AdminProfileController::class, 'index'])->name('profile.index');
         });
     });
 });
 
+Route::group(['as' => 'user.'],function () {
+        Route::get('/categories',[FrontendCategoryController::class,'index'])->name('category.index');
+        Route::get('/posts/category/{category_slug}',[FrontendPostController::class,'index'])->name('post.index');
+        Route::get('/posts/category/{category_slug}/{slug}',[FrontendPostController::class,'show'])->name('post.show');
+    }
+);
 
 Route::get('/', [UserMainController::class, 'index'])->name('user.index');
 Route::get('/login', [UserMainController::class, 'loginForm'])->name('user.loginForm');

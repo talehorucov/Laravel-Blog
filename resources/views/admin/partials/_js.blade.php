@@ -42,7 +42,28 @@ type="text/javascript"></script>
     $(document).ready(function() {
         $('#summernote').summernote({
             height: 250,
+            callbacks: {
+                onImageUpload: function(files, editor, welEditable) {
+                    sendFile(files[0], editor, welEditable);
+                }
+            }
         });
+
+        function sendFile(file, editor, welEditable) {
+            data = new FormData();
+            data.append("file", file);
+            $.ajax({
+                data: data,
+                type: "POST",
+                url: "Your URL POST (php)",
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function(url) {
+                    editor.insertImage(welEditable, url);
+                }
+            });
+        }
     });
 </script>
 <script>
@@ -171,4 +192,3 @@ type="text/javascript"></script>
         })
     })
 </script>
-
