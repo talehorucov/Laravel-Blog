@@ -23,8 +23,13 @@ class Category extends Model
         ];
     }
 
-    public function latestPost()
+    public function latest_post()
     {
         return $this->hasOne(Post::class)->latest();
+    }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
     }
 }

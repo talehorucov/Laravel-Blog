@@ -330,7 +330,7 @@
         <div class="item-box-light-md-less10">
             <div class="ne-isotope-all">
                 <div class="topic-border color-cinnabar mb-30">
-                    <div class="topic-box-lg color-cinnabar">Son Məqalələr</div>
+                    <div class="topic-box-lg color-cinnabar">Ən Son Məqalələr</div>
                     <div class="more-info-link">
                         <a href="{{ route('user.post.latest') }}">Daha çox
                             <i class="fas fa-angle-right" aria-hidden="true"></i>
@@ -384,146 +384,42 @@
                         <div class="topic-box-lg color-cinnabar">Son Rəylər</div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-12 col-md-6 col-sm-12">
-                            <div class="media media-none--md mb-30">
-                                <div class="position-relative width-40">
-                                    <a href="single-news-1.html" class="img-opacity-hover">
-                                        <img src="{{ asset('frontend/img/news/news294.jpg') }}" alt="news"
-                                            class="img-fluid">
-                                    </a>
-                                    <div class="topic-box-top-xs">
-                                        <div class="topic-box-sm color-cod-gray mb-20">Desert</div>
+                        @foreach ($comments as $comment)
+                            <div class="col-lg-12 col-md-6 col-sm-12">
+                                <div class="media media-none--md mb-30">
+                                    <div class="position-relative width-40">
+                                        <a href="{{ route('user.post.show', [$comment->post->category->slug, $comment->post->slug]) }}" class="img-opacity-hover">
+                                            <img src="{{ asset($comment->post->category->image) }}" alt="news"
+                                                class="img-fluid" style="width:300px;height:150px">
+                                        </a>
+                                        <div class="topic-box-top-xs">
+                                            <div class="topic-box-sm color-cod-gray mb-20">{{ $comment->post->category->name }}</div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="media-body p-mb-none-child media-margin30">
-                                    <div class="post-date-dark">
-                                        <ul>
-                                            <li>
-                                                <span>by</span>
-                                                <a href="single-news-1.html">Adams</a>
-                                            </li>
-                                            <li>
-                                                <span>
-                                                    <i class="fas fa-calendar" aria-hidden="true"></i>
-                                                </span>March 22, 2017
-                                            </li>
-                                        </ul>
+                                    <div class="media-body p-mb-none-child media-margin30">
+                                        <div class="post-date-dark">
+                                            <ul>
+                                                <li>
+                                                    <span>Yazan</span>
+                                                    <a href="#">{{ $comment->user->name }}</a>
+                                                </li>
+                                                <li>
+                                                    <span>
+                                                        <i class="fas fa-calendar" aria-hidden="true"></i>
+                                                    </span>{{ Carbon\Carbon::parse($comment->created_at)->locale('az')->isoFormat('LLL') }}
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <h3 class="title-semibold-dark size-lg mb-15">
+                                            <a href="{{ route('user.post.show', [$comment->post->category->slug, $comment->post->slug]) }}">{{ Str::of($comment->post->title)->limit(30) }}</a>
+                                        </h3>
+                                        <p>
+                                            {{ Str::of($comment->content)->limit(200) }}
+                                        </p>
                                     </div>
-                                    <h3 class="title-semibold-dark size-lg mb-15">
-                                        <a href="single-news-1.html">Bread medu vada recipe Hebbars Kitchen</a>
-                                    </h3>
-                                    <p>Separated they live in Bookmarksgrove right at the coast of the Semantics,
-                                        a large language ocean. A small river named Duden flows by their place
-                                        and ...
-                                    </p>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-lg-12 col-md-6 col-sm-12">
-                            <div class="media media-none--md mb-30">
-                                <div class="position-relative width-40">
-                                    <a href="single-news-2.html" class="img-opacity-hover">
-                                        <img src="{{ asset('frontend/img/news/news295.jpg') }}" alt="news"
-                                            class="img-fluid">
-                                    </a>
-                                    <div class="topic-box-top-xs">
-                                        <div class="topic-box-sm color-cod-gray mb-20">Desert</div>
-                                    </div>
-                                </div>
-                                <div class="media-body p-mb-none-child media-margin30">
-                                    <div class="post-date-dark">
-                                        <ul>
-                                            <li>
-                                                <span>by</span>
-                                                <a href="single-news-1.html">Adams</a>
-                                            </li>
-                                            <li>
-                                                <span>
-                                                    <i class="fas fa-calendar" aria-hidden="true"></i>
-                                                </span>March 22, 2017
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <h3 class="title-semibold-dark size-lg mb-15">
-                                        <a href="single-news-2.html">Quick Tips: Cling Wrap Hack One Pot Chef</a>
-                                    </h3>
-                                    <p>Separated they live in Bookmarksgrove right at the coast of the Semantics,
-                                        a large language ocean. A small river named Duden flows by their place
-                                        and ...
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-12 col-md-6 col-sm-12">
-                            <div class="media media-none--md mb-30">
-                                <div class="position-relative width-40">
-                                    <a href="single-news-3.html" class="img-opacity-hover">
-                                        <img src="{{ asset('frontend/img/news/news296.jpg') }}" alt="news"
-                                            class="img-fluid">
-                                    </a>
-                                    <div class="topic-box-top-xs">
-                                        <div class="topic-box-sm color-cod-gray mb-20">Desert</div>
-                                    </div>
-                                </div>
-                                <div class="media-body p-mb-none-child media-margin30">
-                                    <div class="post-date-dark">
-                                        <ul>
-                                            <li>
-                                                <span>by</span>
-                                                <a href="single-news-1.html">Adams</a>
-                                            </li>
-                                            <li>
-                                                <span>
-                                                    <i class="fas fa-calendar" aria-hidden="true"></i>
-                                                </span>March 22, 2017
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <h3 class="title-semibold-dark size-lg mb-15">
-                                        <a href="single-news-3.html">Sushi Rice with Salmon and Vegetables</a>
-                                    </h3>
-                                    <p>Separated they live in Bookmarksgrove right at the coast of the Semantics,
-                                        a large language ocean. A small river named Duden flows by their place
-                                        and ...
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-12 col-md-6 col-sm-12">
-                            <div class="media media-none--md mb-30">
-                                <div class="position-relative width-40">
-                                    <a href="single-news-1.html" class="img-opacity-hover">
-                                        <img src="{{ asset('frontend/img/news/news297.jpg') }}" alt="news"
-                                            class="img-fluid">
-                                    </a>
-                                    <div class="topic-box-top-xs">
-                                        <div class="topic-box-sm color-cod-gray mb-20">Desert</div>
-                                    </div>
-                                </div>
-                                <div class="media-body p-mb-none-child media-margin30">
-                                    <div class="post-date-dark">
-                                        <ul>
-                                            <li>
-                                                <span>by</span>
-                                                <a href="single-news-1.html">Adams</a>
-                                            </li>
-                                            <li>
-                                                <span>
-                                                    <i class="fas fa-calendar" aria-hidden="true"></i>
-                                                </span>March 22, 2017
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <h3 class="title-semibold-dark size-lg mb-15">
-                                        <a href="single-news-1.html">Indian summer drinks Recipe by Healthy</a>
-                                    </h3>
-                                    <p>Separated they live in Bookmarksgrove right at the coast of the Semantics,
-                                        a large language ocean. A small river named Duden flows by their place
-                                        and ...
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -831,7 +727,8 @@
                         <div class="content p-30-r">
                             <div class="ctg-title-xs">{{ $category->name }}</div>
                             <h3 class="title-regular-light size-lg">
-                                <a href="{{ route('user.post.index',$category->slug) }}">{{ $category->description }}</a>
+                                <a
+                                    href="{{ route('user.post.index', $category->slug) }}">{{ $category->description }}</a>
                             </h3>
                             <div class="post-date-light d-block d-sm-none d-md-block">
                                 <ul>

@@ -28,8 +28,10 @@
         <div class="row">
             <div class="col-lg-8 col-md-12 mb-30">
                 <div class="news-details-layout1">
+                    <input type="hidden" id="post_id" value="{{ $post->id }}">
                     <div class="position-relative mb-30">
-                        <img style="width: 800px;height:400px" src="{{ asset($post->thumbnail) }}" alt="news-details" class="img-fluid">
+                        <img style="width: 800px;height:400px" src="{{ asset($post->thumbnail) }}" alt="news-details"
+                            class="img-fluid">
                         <div class="topic-box-top-sm">
                             <div class="topic-box-sm color-cinnabar mb-20">{{ $category->name }}</div>
                         </div>
@@ -79,7 +81,8 @@
                     </div>
                     <div class="author-info p-35-r mb-50 border-all">
                         <div class="media media-none-xs">
-                            <img style="width: 100px;height:100px" src="{{ asset($post->user->image) }}" alt="author" class="img-fluid rounded-circle">
+                            <img style="width: 100px;height:100px" src="{{ asset($post->user->image) }}" alt="author"
+                                class="img-fluid rounded-circle">
                             <div class="media-body pt-10 media-margin30">
                                 <h3 class="size-lg mb-5">{{ $post->user->name }}</h3>
                                 <div class="post-by mb-5">Vəzifə: {{ $post->user->role->name }}</div>
@@ -117,23 +120,28 @@
                         </div>
                     </div>
                     <div class="comments-area">
-                        <h2 class="title-semibold-dark size-xl border-bottom mb-40 pb-20">03 Comments</h2>
-                        <ul>
-                            <li>
-                                <div class="media media-none-xs">
-                                    <img src="{{ asset('frontend/img/blog1.jpg') }}" class="img-fluid rounded-circle" alt="comments">
-                                    <div class="media-body comments-content media-margin30">
-                                        <h3 class="title-semibold-dark">
-                                            <a href="#">Nitiya ,
-                                                <span> August 29, 2017</span>
-                                            </a>
-                                        </h3>
-                                        <p>Borem Ipsum is simply dummy text of the printing and typesetting industry
-                                            Lorem Ipsum has been the industry's standard dummy text.</p>
+                        <h2 class="title-semibold-dark size-xl border-bottom mb-40 pb-20">{{ $post->comments->count() }} Rəy mövcuddur</h2>
+                        @foreach ($post->comments as $comment)
+                            <ul>
+                                <li>
+                                    <div class="media media-none-xs">
+                                        <img style="width: 120px;height:120px"
+                                            src="{{ asset($comment->user->image) }}" class="img-fluid rounded-circle"
+                                            alt="comments">
+                                        <div class="media-body comments-content media-margin30">
+                                            <h3 class="title-semibold-dark">
+                                                <a href="#">{{ $comment->user->name }} ,
+                                                    <span> {{ $comment->created_at->diffForhumans() }}</span>
+                                                </a>
+                                            </h3>
+                                            <p>
+                                                {{ $comment->content }}
+                                            </p>
+                                        </div>
                                     </div>
-                                </div>
-                            </li>
-                        </ul>
+                                </li>
+                            </ul>
+                        @endforeach
                     </div>
                     <div class="leave-comments">
                         <h2 class="title-semibold-dark size-xl mb-40">Rəy Bildirin</h2>
@@ -148,7 +156,7 @@
                                 </div>
                                 <div class="col-12">
                                     <div class="form-group mb-none">
-                                        <button type="submit" class="btn-ftg-ptp-45">Göndər</button>
+                                        <button id="send-comment" type="submit" class="btn-ftg-ptp-45 float-right">Göndər</button>
                                     </div>
                                 </div>
                             </div>
@@ -168,7 +176,8 @@
                                     <div class="topic-box-sm color-cod-gray mb-20">Nature</div>
                                 </div>
                                 <a href="single-news-1.html" class="mb-10 display-block img-opacity-hover">
-                                    <img src="{{ asset('frontend/img/news/news171.jpg') }}" alt="ad" class="img-fluid m-auto width-100">
+                                    <img src="{{ asset('frontend/img/news/news171.jpg') }}" alt="ad"
+                                        class="img-fluid m-auto width-100">
                                 </a>
                                 <h3 class="title-medium-dark size-md mb-none">
                                     <a href="single-news-1.html">Rosie Huntington Whitl Habits Career Art.Rosie TBeauty
@@ -182,7 +191,8 @@
                                     <div class="topic-box-sm color-cod-gray mb-20">Application</div>
                                 </div>
                                 <a href="single-news-1.html" class="mb-10 display-block img-opacity-hover">
-                                    <img src="{{ asset('frontend/img/news/news172.jpg') }}" alt="ad" class="img-fluid m-auto width-100">
+                                    <img src="{{ asset('frontend/img/news/news172.jpg') }}" alt="ad"
+                                        class="img-fluid m-auto width-100">
                                 </a>
                                 <h3 class="title-medium-dark size-md mb-none">
                                     <a href="single-news-1.html">Rosie Huntington Whitl Habits Career Art.Rosie TBeauty
@@ -196,7 +206,8 @@
                                     <div class="topic-box-sm color-cod-gray mb-20">Life Style</div>
                                 </div>
                                 <a href="single-news-1.html" class="mb-10 display-block img-opacity-hover">
-                                    <img src="{{ asset('frontend/img/news/news173.jpg') }}" alt="ad" class="img-fluid m-auto width-100">
+                                    <img src="{{ asset('frontend/img/news/news173.jpg') }}" alt="ad"
+                                        class="img-fluid m-auto width-100">
                                 </a>
                                 <h3 class="title-medium-dark size-md mb-none">
                                     <a href="single-news-1.html">Rosie Huntington Whitl Habits Career Art.Rosie TBeauty
@@ -210,7 +221,8 @@
                                     <div class="topic-box-sm color-cod-gray mb-20">Technology</div>
                                 </div>
                                 <a href="single-news-1.html" class="mb-10 display-block img-opacity-hover">
-                                    <img src="{{ asset('frontend/img/news/news174.jpg') }}" alt="ad" class="img-fluid m-auto width-100">
+                                    <img src="{{ asset('frontend/img/news/news174.jpg') }}" alt="ad"
+                                        class="img-fluid m-auto width-100">
                                 </a>
                                 <h3 class="title-medium-dark size-md mb-none">
                                     <a href="single-news-1.html">Rosie Huntington Whitl Habits Career Art.Rosie TBeauty
@@ -224,7 +236,8 @@
                                     <div class="topic-box-sm color-cod-gray mb-20">Accessories</div>
                                 </div>
                                 <a href="single-news-1.html" class="mb-10 display-block img-opacity-hover">
-                                    <img src="{{ asset('frontend/img/news/news175.jpg') }}" alt="ad" class="img-fluid m-auto width-100">
+                                    <img src="{{ asset('frontend/img/news/news175.jpg') }}" alt="ad"
+                                        class="img-fluid m-auto width-100">
                                 </a>
                                 <h3 class="title-medium-dark size-md mb-none">
                                     <a href="single-news-1.html">Rosie Huntington Whitl Habits Career Art.Rosie TBeauty
@@ -238,7 +251,8 @@
                                     <div class="topic-box-sm color-cod-gray mb-20">Model</div>
                                 </div>
                                 <a href="single-news-1.html" class="mb-10 display-block img-opacity-hover">
-                                    <img src="{{ asset('frontend/img/news/news176.jpg') }}" alt="ad" class="img-fluid m-auto width-100">
+                                    <img src="{{ asset('frontend/img/news/news176.jpg') }}" alt="ad"
+                                        class="img-fluid m-auto width-100">
                                 </a>
                                 <h3 class="title-medium-dark size-md mb-none">
                                     <a href="single-news-1.html">Rosie Huntington Whitl Habits Career Art.Rosie TBeauty
@@ -259,7 +273,8 @@
                                     <div class="topic-box-sm color-cod-gray mb-20">Nature</div>
                                 </div>
                                 <a href="single-news-1.html" class="mb-10 display-block img-opacity-hover">
-                                    <img src="{{ asset('frontend/img/news/news171.jpg') }}" alt="ad" class="img-fluid m-auto width-100">
+                                    <img src="{{ asset('frontend/img/news/news171.jpg') }}" alt="ad"
+                                        class="img-fluid m-auto width-100">
                                 </a>
                                 <h3 class="title-medium-dark size-md mb-none">
                                     <a href="single-news-1.html">Rosie Huntington Whitl Habits Career Art.Rosie TBeauty
@@ -273,7 +288,8 @@
                                     <div class="topic-box-sm color-cod-gray mb-20">Application</div>
                                 </div>
                                 <a href="single-news-1.html" class="mb-10 display-block img-opacity-hover">
-                                    <img src="{{ asset('frontend/img/news/news172.jpg') }}" alt="ad" class="img-fluid m-auto width-100">
+                                    <img src="{{ asset('frontend/img/news/news172.jpg') }}" alt="ad"
+                                        class="img-fluid m-auto width-100">
                                 </a>
                                 <h3 class="title-medium-dark size-md mb-none">
                                     <a href="single-news-1.html">Rosie Huntington Whitl Habits Career Art.Rosie TBeauty
@@ -287,7 +303,8 @@
                                     <div class="topic-box-sm color-cod-gray mb-20">Life Style</div>
                                 </div>
                                 <a href="single-news-1.html" class="mb-10 display-block img-opacity-hover">
-                                    <img src="{{ asset('frontend/img/news/news173.jpg') }}" alt="ad" class="img-fluid m-auto width-100">
+                                    <img src="{{ asset('frontend/img/news/news173.jpg') }}" alt="ad"
+                                        class="img-fluid m-auto width-100">
                                 </a>
                                 <h3 class="title-medium-dark size-md mb-none">
                                     <a href="single-news-1.html">Rosie Huntington Whitl Habits Career Art.Rosie TBeauty
@@ -301,7 +318,8 @@
                                     <div class="topic-box-sm color-cod-gray mb-20">Technology</div>
                                 </div>
                                 <a href="single-news-1.html" class="mb-10 display-block img-opacity-hover">
-                                    <img src="{{ asset('frontend/img/news/news174.jpg') }}" alt="ad" class="img-fluid m-auto width-100">
+                                    <img src="{{ asset('frontend/img/news/news174.jpg') }}" alt="ad"
+                                        class="img-fluid m-auto width-100">
                                 </a>
                                 <h3 class="title-medium-dark size-md mb-none">
                                     <a href="single-news-1.html">Rosie Huntington Whitl Habits Career Art.Rosie TBeauty
@@ -315,7 +333,8 @@
                                     <div class="topic-box-sm color-cod-gray mb-20">Accessories</div>
                                 </div>
                                 <a href="single-news-1.html" class="mb-10 display-block img-opacity-hover">
-                                    <img src="{{ asset('frontend/img/news/news175.jpg') }}" alt="ad" class="img-fluid m-auto width-100">
+                                    <img src="{{ asset('frontend/img/news/news175.jpg') }}" alt="ad"
+                                        class="img-fluid m-auto width-100">
                                 </a>
                                 <h3 class="title-medium-dark size-md mb-none">
                                     <a href="single-news-1.html">Rosie Huntington Whitl Habits Career Art.Rosie TBeauty
@@ -329,7 +348,8 @@
                                     <div class="topic-box-sm color-cod-gray mb-20">Model</div>
                                 </div>
                                 <a href="single-news-1.html" class="mb-10 display-block img-opacity-hover">
-                                    <img src="{{ asset('frontend/img/news/news176.jpg') }}" alt="ad" class="img-fluid m-auto width-100">
+                                    <img src="{{ asset('frontend/img/news/news176.jpg') }}" alt="ad"
+                                        class="img-fluid m-auto width-100">
                                 </a>
                                 <h3 class="title-medium-dark size-md mb-none">
                                     <a href="single-news-1.html">Rosie Huntington Whitl Habits Career Art.Rosie TBeauty
@@ -361,7 +381,8 @@
                         </div>
                         <div class="media">
                             <a class="img-opacity-hover" href="single-news-1.html">
-                                <img src="{{ asset('frontend/img/news/news117.jpg') }}" alt="news" class="img-fluid">
+                                <img src="{{ asset('frontend/img/news/news117.jpg') }}" alt="news"
+                                    class="img-fluid">
                             </a>
                             <div class="media-body">
                                 <div class="post-date-dark">
@@ -385,7 +406,8 @@
                         </div>
                         <div class="media">
                             <a class="img-opacity-hover" href="single-news-2.html">
-                                <img src="{{ asset('frontend/img/news/news118.jpg') }}" alt="news" class="img-fluid">
+                                <img src="{{ asset('frontend/img/news/news118.jpg') }}" alt="news"
+                                    class="img-fluid">
                             </a>
                             <div class="media-body">
                                 <div class="post-date-dark">
@@ -409,7 +431,8 @@
                         </div>
                         <div class="media">
                             <a class="img-opacity-hover" href="single-news-3.html">
-                                <img src="{{ asset('frontend/img/news/news119.jpg') }}" alt="news" class="img-fluid">
+                                <img src="{{ asset('frontend/img/news/news119.jpg') }}" alt="news"
+                                    class="img-fluid">
                             </a>
                             <div class="media-body">
                                 <div class="post-date-dark">
@@ -433,7 +456,8 @@
                         </div>
                         <div class="media">
                             <a class="img-opacity-hover" href="single-news-1.html">
-                                <img src="{{ asset('frontend/img/news/news120.jpg') }}" alt="news" class="img-fluid">
+                                <img src="{{ asset('frontend/img/news/news120.jpg') }}" alt="news"
+                                    class="img-fluid">
                             </a>
                             <div class="media-body">
                                 <div class="post-date-dark">
@@ -457,7 +481,8 @@
                         </div>
                         <div class="media">
                             <a class="img-opacity-hover" href="single-news-1.html">
-                                <img src="{{ asset('frontend/img/news/news121.jpg') }}" alt="news" class="img-fluid">
+                                <img src="{{ asset('frontend/img/news/news121.jpg') }}" alt="news"
+                                    class="img-fluid">
                             </a>
                             <div class="media-body">
                                 <div class="post-date-dark">

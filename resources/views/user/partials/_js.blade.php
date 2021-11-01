@@ -27,8 +27,12 @@
 <script src="{{ asset('frontend/js/ticker.js') }}" type="text/javascript"></script>
 <!-- Custom Js -->
 <script src="{{ asset('frontend/js/main.js') }}" type="text/javascript"></script>
-
+<!-- Site Js -->
+<script src="{{ asset('frontend/js/site.js') }}" type="text/javascript"></script>
+<!-- Toastr -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<!-- Sweet Alert -->
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
     @if (Session::has('message'))

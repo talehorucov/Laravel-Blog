@@ -39,10 +39,8 @@
             $.ajax({
                 type: 'GET',
                 url: '{{ route('user.post.all') }}',
-                dataType: 'json',
-                success: function(response) {
-                    console.log(response)
-                    
+                success: (res) => {
+                    $('#postall').html(res)
                 }
             })
         }

@@ -8,6 +8,7 @@ use App\Http\Controllers\Backend\MainController;
 use App\Http\Controllers\Backend\PostController;
 use App\Http\Controllers\Backend\TagController;
 use App\Http\Controllers\Frontend\CategoryController as FrontendCategoryController;
+use App\Http\Controllers\Frontend\CommentController;
 use App\Http\Controllers\Frontend\MainController as FrontendMainController;
 use App\Http\Controllers\Frontend\PostController as FrontendPostController;
 use App\Http\Controllers\Frontend\ProfileController as FrontendProfileController;
@@ -71,7 +72,7 @@ Route::group(
         });
 
         Route::prefix('comment')->group(function () {
-            Route::get('/', [FrontendProfileController::class, 'index'])->name('profile.index');
+            Route::post('/add', [CommentController::class, 'store'])->name('comment.store.ajax');
             Route::get('/edit', [FrontendProfileController::class, 'edit'])->name('profile.edit');
             Route::post('/update/{user}', [FrontendProfileController::class, 'update'])->name('profile.update');
         });

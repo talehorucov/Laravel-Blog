@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\User\UserLoginRequest;
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\Post;
 use App\Models\User;
 use App\Notifications\ForgotPasswordNotification;
@@ -18,10 +19,11 @@ class MainController extends Controller
 {
     public function index()
     {
+        $comments = Comment::with('user','post.category')->take(4)->orderByDesc('id')->get();
         $posts = Post::with('category')->get();
         $random_posts = Post::inRandomOrder()->limit(4)->get();
         $categories = Category::get();
-        return view('user.index',compact('random_posts','posts','categories'));
+        return view('user.index',compact('comments','random_posts','posts','categories'));
     }
 
     public function loginForm()
