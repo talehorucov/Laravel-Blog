@@ -324,7 +324,7 @@
     </div>
 </section>
 <!-- Popular Area End Here -->
-<!-- All Posts Area Start Here -->
+<!-- Latest Posts Area Start Here -->
 <section class="section-space-bottom">
     <div class="container">
         <div class="item-box-light-md-less10">
@@ -373,7 +373,54 @@
         </div>
     </div>
 </section>
-<!-- All Posts Area Start Here -->
+<!-- Latest Posts Area Start Here -->
+
+<!-- Most Views Posts Area Start Here -->
+<section class="section-space-bottom">
+    <div class="container">
+        <div class="item-box-light-md-less10">
+            <div class="ne-isotope-all">
+                <div class="topic-border color-cinnabar mb-30">
+                    <div class="topic-box-lg color-cinnabar">Ən Çox Oxunan Məqalələr</div>
+                </div>
+                <div class="row tab-space5 featuredContainer">
+                    @foreach ($mostview_posts as $post)
+                        <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                            <div class="img-overlay-70 img-scale-animate mb-10">
+                                <img style="width: 600px;height:220px;object-fit" src="{{ asset($post->thumbnail) }}"
+                                    alt="news" class="img-fluid width-100">
+                                <div class="topic-box-top-sm">
+                                    <div class="topic-box-sm color-cod-gray mb-20">{{ $post->category->name }}</div>
+                                </div>
+                                <div class="mask-content-xs">
+                                    <div class="post-date-light d-none d-md-block">
+                                        <ul>
+                                            <li>
+                                                <span>Yazar</span>
+                                                <a href="#">{{ $post->user->name }}</a>
+                                            </li>
+                                            <li>
+                                                <span>
+                                                    <i class="fas fa-calendar" aria-hidden="true"></i>
+                                                </span>{{ Carbon\Carbon::parse($post->created_at)->locale('az')->isoFormat('LLL') }}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <h3 class="title-medium-light size-lg">
+                                        <a
+                                            href="{{ route('user.post.show', [$post->category->slug, $post->slug]) }}">{{ Str::of($post->title)->limit(30) }}</a>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Most Views Posts Area Start Here -->
+
 <!-- Latest Comments Area Start Here -->
 <section class="section-space-bottom-less30">
     <div class="container">
@@ -381,7 +428,7 @@
             <div class="col-xl-8 col-lg-12 mb-30">
                 <div class="item-box-light-md-less30 ie-full-width">
                     <div class="topic-border color-cinnabar mb-30">
-                        <div class="topic-box-lg color-cinnabar">Son Rəylər</div>
+                        <div class="topic-box-lg color-cinnabar">Ən Son Rəylər</div>
                     </div>
                     <div class="row">
                         @foreach ($comments as $comment)

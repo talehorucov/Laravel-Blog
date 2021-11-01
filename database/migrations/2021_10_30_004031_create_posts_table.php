@@ -16,6 +16,7 @@ class CreatePostsTable extends Migration
             $table->longText('content');
             $table->string('thumbnail');
             $table->foreignId('category_id')->constrained();
+            $table->bigInteger('view_count')->default(0);
             $table->boolean('publish')->default(false);
             $table->timestamp('published_at')->nullable();
             $table->softDeletes();

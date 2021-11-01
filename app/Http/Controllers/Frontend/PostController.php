@@ -15,7 +15,7 @@ class PostController extends Controller
         $category = Category::whereSlug($category_slug)->firstOrFail();
         $posts = Post::with('user', 'tags')->whereHas('category', function ($query) use ($category_slug) {
             $query->where('slug', $category_slug);
-        })->where('publish', false)->orderByDesc('id');
+        })->where('publish', false)->orderByDesc('id')->get();
         $tags = Tag::all();
         return view('user.post.index', compact('posts', 'category', 'tags'));
     }
@@ -23,7 +23,9 @@ class PostController extends Controller
     public function show($category_slug, $slug)
     {
         $category = Category::whereSlug($category_slug)->firstOrfail();
-        $post = Post::with('user','tags','comments')->whereSlug($slug)->firstOrfail();
+        $post = Post::with('user','tags','comments')->withCount('comments')->whereSlug($slug)->firstOrfail();
+        $post->increment('view_count');
+        $post->save();
         $tags = Tag::all();
         return view('user.post.show', compact('category', 'post','tags'));
     }

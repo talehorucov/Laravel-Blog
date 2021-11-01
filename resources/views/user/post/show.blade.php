@@ -48,11 +48,11 @@
                         </li>
                         <li>
                             <a href="#">
-                                <i class="fa fa-eye" aria-hidden="true"></i>202</a>
+                                <i class="fa fa-eye" aria-hidden="true"></i>{{ $post->view_count }}</a>
                         </li>
                         <li>
                             <a href="#">
-                                <i class="fa fa-comments" aria-hidden="true"></i>20</a>
+                                <i class="fa fa-comments" aria-hidden="true"></i>{{ $post->comments_count }}</a>
                         </li>
                     </ul>
                     {!! $post->content !!}

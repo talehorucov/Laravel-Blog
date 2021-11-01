@@ -69,7 +69,7 @@
                     <div class="col-sm-6 col-12">
                         <div class="pagination-btn-wrapper text-center--xs mb15--xs">
                             <ul>
-                                {{ $posts->links() }}
+                                {{-- {{ $posts->links() }} --}}
                             </ul>
                         </div>
                     </div>
