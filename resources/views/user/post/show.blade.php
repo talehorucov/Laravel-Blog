@@ -16,7 +16,7 @@
                 <li>
                     <a href="{{ route('user.post.index', $category->slug) }}">{{ $category->name }}</a> -
                 </li>
-                <li>{{ $post->title }}</li>
+                <li>{!! Str::of($post->title)->limit(100) !!}</li>
             </ul>
         </div>
     </div>
@@ -29,7 +29,7 @@
             <div class="col-lg-8 col-md-12 mb-30">
                 <div class="news-details-layout1">
                     <div class="position-relative mb-30">
-                        <img src="{{ asset($post->thumbnail) }}" alt="news-details" class="img-fluid">
+                        <img style="width: 800px;height:400px" src="{{ asset($post->thumbnail) }}" alt="news-details" class="img-fluid">
                         <div class="topic-box-top-sm">
                             <div class="topic-box-sm color-cinnabar mb-20">{{ $category->name }}</div>
                         </div>
@@ -53,54 +53,15 @@
                                 <i class="fa fa-comments" aria-hidden="true"></i>20</a>
                         </li>
                     </ul>
-                    {{ $post->content }}
+                    {!! $post->content !!}
                     <ul class="blog-tags item-inline">
-                        <li>Tags</li>
-                        <li>
-                            <a href="#">#Business</a>
-                        </li>
-                        <li>
-                            <a href="#">#Magazine</a>
-                        </li>
-                        <li>
-                            <a href="#">#Lifestyle</a>
-                        </li>
+                        <li>Etiketlər</li>
+                        @foreach ($post->tags as $tag)
+                            <li>
+                                <a href="#">#{{ $tag->name }}</a>
+                            </li>
+                        @endforeach
                     </ul>
-                    <div class="post-share-area mb-40 item-shadow-1">
-                        <p>You can share this post!</p>
-                        <ul class="social-default item-inline">
-                            <li>
-                                <a href="#" class="facebook">
-                                    <i class="fa fa-facebook" aria-hidden="true"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="twitter">
-                                    <i class="fa fa-twitter" aria-hidden="true"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="google">
-                                    <i class="fa fa-google-plus" aria-hidden="true"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="pinterest">
-                                    <i class="fa fa-pinterest" aria-hidden="true"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="rss">
-                                    <i class="fa fa-rss" aria-hidden="true"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="linkedin">
-                                    <i class="fa fa-linkedin" aria-hidden="true"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
                     <div class="row no-gutters divider blog-post-slider">
                         <div class="col-lg-6 col-md-6 col-sm-6 col-6">
                             <a href="#" class="prev-article">
@@ -118,13 +79,13 @@
                     </div>
                     <div class="author-info p-35-r mb-50 border-all">
                         <div class="media media-none-xs">
-                            <img src="img/author.jpg" alt="author" class="img-fluid rounded-circle">
+                            <img style="width: 100px;height:100px" src="{{ asset($post->user->image) }}" alt="author" class="img-fluid rounded-circle">
                             <div class="media-body pt-10 media-margin30">
-                                <h3 class="size-lg mb-5">Mark Willy</h3>
-                                <div class="post-by mb-5">By Admin</div>
-                                <p class="mb-15">Dorem Ipsum is simply dummy text of the printing and
-                                    typesetting industr been
-                                    the industry's standard dummy text ever since.</p>
+                                <h3 class="size-lg mb-5">{{ $post->user->name }}</h3>
+                                <div class="post-by mb-5">Vəzifə: {{ $post->user->role->name }}</div>
+                                <p class="mb-15">
+                                    {{ auth()->user()->about }}
+                                </p>
                                 <ul class="author-social-style2 item-inline">
                                     <li>
                                         <a href="#" title="facebook">
@@ -160,7 +121,7 @@
                         <ul>
                             <li>
                                 <div class="media media-none-xs">
-                                    <img src="img/blog1.jpg" class="img-fluid rounded-circle" alt="comments">
+                                    <img src="{{ asset('frontend/img/blog1.jpg') }}" class="img-fluid rounded-circle" alt="comments">
                                     <div class="media-body comments-content media-margin30">
                                         <h3 class="title-semibold-dark">
                                             <a href="#">Nitiya ,
@@ -172,54 +133,22 @@
                                     </div>
                                 </div>
                             </li>
-                            <li>
-                                <div class="media media-none-xs">
-                                    <img src="img/blog2.jpg" class="img-fluid rounded-circle" alt="comments">
-                                    <div class="media-body comments-content media-margin30">
-                                        <h3 class="title-semibold-dark">
-                                            <a href="#">Fahim ,
-                                                <span> August 29, 2017</span>
-                                            </a>
-                                        </h3>
-                                        <p>Borem Ipsum is simply dummy text of the printing and typesetting industry
-                                            Lorem Ipsum has been the industry's standard dummy text.</p>
-                                    </div>
-                                </div>
-                            </li>
                         </ul>
                     </div>
                     <div class="leave-comments">
-                        <h2 class="title-semibold-dark size-xl mb-40">Leave Comments</h2>
-                        <form id="leave-comments">
+                        <h2 class="title-semibold-dark size-xl mb-40">Rəy Bildirin</h2>
+                        <form>
                             <div class="row">
-                                <div class="col-md-4 col-sm-12">
-                                    <div class="form-group">
-                                        <input placeholder="Name*" class="form-control" type="text">
-                                        <div class="help-block with-errors"></div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-sm-12">
-                                    <div class="form-group">
-                                        <input placeholder="Email*" class="form-control" type="email">
-                                        <div class="help-block with-errors"></div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-sm-12">
-                                    <div class="form-group">
-                                        <input placeholder="Web Address" class="form-control" type="text">
-                                        <div class="help-block with-errors"></div>
-                                    </div>
-                                </div>
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <textarea placeholder="Message*" class="textarea form-control" id="form-message"
+                                        <textarea placeholder="Rəyiniz..." class="form-control" id="form-message"
                                             rows="8" cols="20"></textarea>
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-group mb-none">
-                                        <button type="submit" class="btn-ftg-ptp-45">Post Comment</button>
+                                        <button type="submit" class="btn-ftg-ptp-45">Göndər</button>
                                     </div>
                                 </div>
                             </div>
@@ -229,42 +158,8 @@
             </div>
             <div class="ne-sidebar sidebar-break-md col-lg-4 col-md-12">
                 <div class="sidebar-box">
-                    <div class="topic-border color-cod-gray mb-30">
-                        <div class="topic-box-lg color-cod-gray">Stay Connected</div>
-                    </div>
-                    <ul class="stay-connected overflow-hidden">
-                        <li class="facebook">
-                            <i class="fa fa-facebook" aria-hidden="true"></i>
-                            <div class="connection-quantity">50.2 k</div>
-                            <p>Fans</p>
-                        </li>
-                        <li class="twitter">
-                            <i class="fa fa-twitter" aria-hidden="true"></i>
-                            <div class="connection-quantity">10.3 k</div>
-                            <p>Followers</p>
-                        </li>
-                        <li class="linkedin">
-                            <i class="fa fa-linkedin" aria-hidden="true"></i>
-                            <div class="connection-quantity">25.4 k</div>
-                            <p>Fans</p>
-                        </li>
-                        <li class="rss">
-                            <i class="fa fa-rss" aria-hidden="true"></i>
-                            <div class="connection-quantity">20.8 k</div>
-                            <p>Subscriber</p>
-                        </li>
-                    </ul>
-                </div>
-                <div class="sidebar-box">
-                    <div class="ne-banner-layout1 text-center">
-                        <a href="#">
-                            <img src="img/banner/banner3.jpg" alt="ad" class="img-fluid">
-                        </a>
-                    </div>
-                </div>
-                <div class="sidebar-box">
                     <div class="topic-border color-cod-gray mb-5">
-                        <div class="topic-box-lg color-cod-gray">Recent News</div>
+                        <div class="topic-box-lg color-cod-gray">Bənzər Məqalələr</div>
                     </div>
                     <div class="row">
                         <div class="col-lg-6 col-md-4 col-sm-6 col-6">
@@ -273,7 +168,7 @@
                                     <div class="topic-box-sm color-cod-gray mb-20">Nature</div>
                                 </div>
                                 <a href="single-news-1.html" class="mb-10 display-block img-opacity-hover">
-                                    <img src="img/news/news171.jpg" alt="ad" class="img-fluid m-auto width-100">
+                                    <img src="{{ asset('frontend/img/news/news171.jpg') }}" alt="ad" class="img-fluid m-auto width-100">
                                 </a>
                                 <h3 class="title-medium-dark size-md mb-none">
                                     <a href="single-news-1.html">Rosie Huntington Whitl Habits Career Art.Rosie TBeauty
@@ -287,7 +182,7 @@
                                     <div class="topic-box-sm color-cod-gray mb-20">Application</div>
                                 </div>
                                 <a href="single-news-1.html" class="mb-10 display-block img-opacity-hover">
-                                    <img src="img/news/news172.jpg" alt="ad" class="img-fluid m-auto width-100">
+                                    <img src="{{ asset('frontend/img/news/news172.jpg') }}" alt="ad" class="img-fluid m-auto width-100">
                                 </a>
                                 <h3 class="title-medium-dark size-md mb-none">
                                     <a href="single-news-1.html">Rosie Huntington Whitl Habits Career Art.Rosie TBeauty
@@ -301,7 +196,7 @@
                                     <div class="topic-box-sm color-cod-gray mb-20">Life Style</div>
                                 </div>
                                 <a href="single-news-1.html" class="mb-10 display-block img-opacity-hover">
-                                    <img src="img/news/news173.jpg" alt="ad" class="img-fluid m-auto width-100">
+                                    <img src="{{ asset('frontend/img/news/news173.jpg') }}" alt="ad" class="img-fluid m-auto width-100">
                                 </a>
                                 <h3 class="title-medium-dark size-md mb-none">
                                     <a href="single-news-1.html">Rosie Huntington Whitl Habits Career Art.Rosie TBeauty
@@ -315,7 +210,7 @@
                                     <div class="topic-box-sm color-cod-gray mb-20">Technology</div>
                                 </div>
                                 <a href="single-news-1.html" class="mb-10 display-block img-opacity-hover">
-                                    <img src="img/news/news174.jpg" alt="ad" class="img-fluid m-auto width-100">
+                                    <img src="{{ asset('frontend/img/news/news174.jpg') }}" alt="ad" class="img-fluid m-auto width-100">
                                 </a>
                                 <h3 class="title-medium-dark size-md mb-none">
                                     <a href="single-news-1.html">Rosie Huntington Whitl Habits Career Art.Rosie TBeauty
@@ -329,7 +224,7 @@
                                     <div class="topic-box-sm color-cod-gray mb-20">Accessories</div>
                                 </div>
                                 <a href="single-news-1.html" class="mb-10 display-block img-opacity-hover">
-                                    <img src="img/news/news175.jpg" alt="ad" class="img-fluid m-auto width-100">
+                                    <img src="{{ asset('frontend/img/news/news175.jpg') }}" alt="ad" class="img-fluid m-auto width-100">
                                 </a>
                                 <h3 class="title-medium-dark size-md mb-none">
                                     <a href="single-news-1.html">Rosie Huntington Whitl Habits Career Art.Rosie TBeauty
@@ -343,7 +238,7 @@
                                     <div class="topic-box-sm color-cod-gray mb-20">Model</div>
                                 </div>
                                 <a href="single-news-1.html" class="mb-10 display-block img-opacity-hover">
-                                    <img src="img/news/news176.jpg" alt="ad" class="img-fluid m-auto width-100">
+                                    <img src="{{ asset('frontend/img/news/news176.jpg') }}" alt="ad" class="img-fluid m-auto width-100">
                                 </a>
                                 <h3 class="title-medium-dark size-md mb-none">
                                     <a href="single-news-1.html">Rosie Huntington Whitl Habits Career Art.Rosie TBeauty
@@ -354,61 +249,111 @@
                     </div>
                 </div>
                 <div class="sidebar-box">
-                    <div class="topic-border color-cod-gray mb-30">
-                        <div class="topic-box-lg color-cod-gray">Newsletter</div>
+                    <div class="topic-border color-cod-gray mb-5">
+                        <div class="topic-box-lg color-cod-gray">Ən Son Məqalələr</div>
                     </div>
-                    <div class="newsletter-area bg-primary">
-                        <h2 class="title-medium-light size-xl pl-30 pr-30">Subscribe to our mailing list to get the new
-                            updates!</h2>
-                        <img src="img/banner/newsletter.png" alt="newsletter" class="img-fluid m-auto mb-15">
-                        <p>Subscribe our newsletter to stay updated</p>
-                        <div class="input-group stylish-input-group">
-                            <input type="text" placeholder="Enter your mail" class="form-control">
-                            <span class="input-group-addon">
-                                <button type="submit">
-                                    <i class="fa fa-angle-right" aria-hidden="true"></i>
-                                </button>
-                            </span>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-4 col-sm-6 col-6">
+                            <div class="mt-25 position-relative">
+                                <div class="topic-box-top-xs">
+                                    <div class="topic-box-sm color-cod-gray mb-20">Nature</div>
+                                </div>
+                                <a href="single-news-1.html" class="mb-10 display-block img-opacity-hover">
+                                    <img src="{{ asset('frontend/img/news/news171.jpg') }}" alt="ad" class="img-fluid m-auto width-100">
+                                </a>
+                                <h3 class="title-medium-dark size-md mb-none">
+                                    <a href="single-news-1.html">Rosie Huntington Whitl Habits Career Art.Rosie TBeauty
+                                        Habits.</a>
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-4 col-sm-6 col-6">
+                            <div class="mt-25 position-relative">
+                                <div class="topic-box-top-xs">
+                                    <div class="topic-box-sm color-cod-gray mb-20">Application</div>
+                                </div>
+                                <a href="single-news-1.html" class="mb-10 display-block img-opacity-hover">
+                                    <img src="{{ asset('frontend/img/news/news172.jpg') }}" alt="ad" class="img-fluid m-auto width-100">
+                                </a>
+                                <h3 class="title-medium-dark size-md mb-none">
+                                    <a href="single-news-1.html">Rosie Huntington Whitl Habits Career Art.Rosie TBeauty
+                                        Habits.</a>
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-4 col-sm-6 col-6">
+                            <div class="mt-25 position-relative">
+                                <div class="topic-box-top-xs">
+                                    <div class="topic-box-sm color-cod-gray mb-20">Life Style</div>
+                                </div>
+                                <a href="single-news-1.html" class="mb-10 display-block img-opacity-hover">
+                                    <img src="{{ asset('frontend/img/news/news173.jpg') }}" alt="ad" class="img-fluid m-auto width-100">
+                                </a>
+                                <h3 class="title-medium-dark size-md mb-none">
+                                    <a href="single-news-1.html">Rosie Huntington Whitl Habits Career Art.Rosie TBeauty
+                                        Habits.</a>
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-4 col-sm-6 col-6">
+                            <div class="mt-25 position-relative">
+                                <div class="topic-box-top-xs">
+                                    <div class="topic-box-sm color-cod-gray mb-20">Technology</div>
+                                </div>
+                                <a href="single-news-1.html" class="mb-10 display-block img-opacity-hover">
+                                    <img src="{{ asset('frontend/img/news/news174.jpg') }}" alt="ad" class="img-fluid m-auto width-100">
+                                </a>
+                                <h3 class="title-medium-dark size-md mb-none">
+                                    <a href="single-news-1.html">Rosie Huntington Whitl Habits Career Art.Rosie TBeauty
+                                        Habits.</a>
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-4 col-sm-6 col-6">
+                            <div class="mt-25 position-relative">
+                                <div class="topic-box-top-xs">
+                                    <div class="topic-box-sm color-cod-gray mb-20">Accessories</div>
+                                </div>
+                                <a href="single-news-1.html" class="mb-10 display-block img-opacity-hover">
+                                    <img src="{{ asset('frontend/img/news/news175.jpg') }}" alt="ad" class="img-fluid m-auto width-100">
+                                </a>
+                                <h3 class="title-medium-dark size-md mb-none">
+                                    <a href="single-news-1.html">Rosie Huntington Whitl Habits Career Art.Rosie TBeauty
+                                        Habits.</a>
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-4 col-sm-6 col-6">
+                            <div class="mt-25 position-relative">
+                                <div class="topic-box-top-xs">
+                                    <div class="topic-box-sm color-cod-gray mb-20">Model</div>
+                                </div>
+                                <a href="single-news-1.html" class="mb-10 display-block img-opacity-hover">
+                                    <img src="{{ asset('frontend/img/news/news176.jpg') }}" alt="ad" class="img-fluid m-auto width-100">
+                                </a>
+                                <h3 class="title-medium-dark size-md mb-none">
+                                    <a href="single-news-1.html">Rosie Huntington Whitl Habits Career Art.Rosie TBeauty
+                                        Habits.</a>
+                                </h3>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="sidebar-box">
                     <div class="topic-border color-cod-gray mb-25">
-                        <div class="topic-box-lg color-cod-gray">Tags</div>
+                        <div class="topic-box-lg color-cod-gray">Etiketlər</div>
                     </div>
                     <ul class="sidebar-tags">
-                        <li>
-                            <a href="#">Apple</a>
-                        </li>
-                        <li>
-                            <a href="#">Business</a>
-                        </li>
-                        <li>
-                            <a href="#">Architecture</a>
-                        </li>
-                        <li>
-                            <a href="#">Gadgets</a>
-                        </li>
-                        <li>
-                            <a href="#">Software</a>
-                        </li>
-                        <li>
-                            <a href="#">Microsoft</a>
-                        </li>
-                        <li>
-                            <a href="#">Robotic</a>
-                        </li>
-                        <li>
-                            <a href="#">Technology</a>
-                        </li>
-                        <li>
-                            <a href="#">Others</a>
-                        </li>
+                        @foreach ($tags as $tag)
+                            <li>
+                                <a href="#">{{ $tag->name }}</a>
+                            </li>
+                        @endforeach
                     </ul>
                 </div>
                 <div class="sidebar-box">
                     <div class="topic-border color-cod-gray mb-30">
-                        <div class="topic-box-lg color-cod-gray">Most Reviews</div>
+                        <div class="topic-box-lg color-cod-gray">Ən Çox Oxunanlar</div>
                     </div>
                     <div class="position-relative mb30-list bg-body">
                         <div class="topic-box-top-xs">
@@ -416,7 +361,7 @@
                         </div>
                         <div class="media">
                             <a class="img-opacity-hover" href="single-news-1.html">
-                                <img src="img/news/news117.jpg" alt="news" class="img-fluid">
+                                <img src="{{ asset('frontend/img/news/news117.jpg') }}" alt="news" class="img-fluid">
                             </a>
                             <div class="media-body">
                                 <div class="post-date-dark">
@@ -440,7 +385,7 @@
                         </div>
                         <div class="media">
                             <a class="img-opacity-hover" href="single-news-2.html">
-                                <img src="img/news/news118.jpg" alt="news" class="img-fluid">
+                                <img src="{{ asset('frontend/img/news/news118.jpg') }}" alt="news" class="img-fluid">
                             </a>
                             <div class="media-body">
                                 <div class="post-date-dark">
@@ -464,7 +409,7 @@
                         </div>
                         <div class="media">
                             <a class="img-opacity-hover" href="single-news-3.html">
-                                <img src="img/news/news119.jpg" alt="news" class="img-fluid">
+                                <img src="{{ asset('frontend/img/news/news119.jpg') }}" alt="news" class="img-fluid">
                             </a>
                             <div class="media-body">
                                 <div class="post-date-dark">
@@ -488,7 +433,7 @@
                         </div>
                         <div class="media">
                             <a class="img-opacity-hover" href="single-news-1.html">
-                                <img src="img/news/news120.jpg" alt="news" class="img-fluid">
+                                <img src="{{ asset('frontend/img/news/news120.jpg') }}" alt="news" class="img-fluid">
                             </a>
                             <div class="media-body">
                                 <div class="post-date-dark">
@@ -512,7 +457,7 @@
                         </div>
                         <div class="media">
                             <a class="img-opacity-hover" href="single-news-1.html">
-                                <img src="img/news/news121.jpg" alt="news" class="img-fluid">
+                                <img src="{{ asset('frontend/img/news/news121.jpg') }}" alt="news" class="img-fluid">
                             </a>
                             <div class="media-body">
                                 <div class="post-date-dark">

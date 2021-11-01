@@ -18,10 +18,10 @@ class MainController extends Controller
 {
     public function index()
     {
-        $posts = Post::all();
-        $random_posts = Post::inRandomOrder()->limit(3)->get();
-        $categories = Category::all();
-        return view('user.index',compact('posts','categories'));
+        $posts = Post::with('category')->get();
+        $random_posts = Post::inRandomOrder()->limit(4)->get();
+        $categories = Category::get();
+        return view('user.index',compact('random_posts','posts','categories'));
     }
 
     public function loginForm()

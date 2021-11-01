@@ -3758,7 +3758,12 @@ div#wrapper.open>.offcanvas-mask {
 
 .login-form .checkbox input[type=checkbox] {
     opacity: 0;
-    visibility: hidden
+    visibility: hidden;
+}
+
+.login-form input[type=checkbox] {
+    width: 3%;
+    float: right;
 }
 
 .login-form .checkbox input[type=checkbox]:checked+label::after {
@@ -6280,6 +6285,27 @@ ul.blog-tags li:first-child {
     left: 0;
     right: 0;
     z-index: 7
+}
+
+.post-card{
+    text-decoration: none; 
+    font-size:16px;
+}
+
+.post-card:hover{
+    text-decoration: none; 
+    color: #e53935;
+}
+
+.post-card-all:hover{
+    text-decoration: none; 
+    color: #e53935;
+}
+
+.post-card-all{
+    text-decoration: none; 
+    font-size:16px;
+    color:#e53935;
 }
 
 @media only screen and (max-width:767px) {

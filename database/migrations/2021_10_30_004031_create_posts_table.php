@@ -17,7 +17,7 @@ class CreatePostsTable extends Migration
             $table->string('thumbnail');
             $table->foreignId('category_id')->constrained();
             $table->boolean('publish')->default(false);
-            $table->timestamp('published_at')->useCurrent = true;
+            $table->timestamp('published_at')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

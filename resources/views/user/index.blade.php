@@ -99,86 +99,30 @@
             <div class="col-xl-4 col-lg-12">
                 <div class="item-box-light-md-less30 ie-full-width">
                     <div class="row">
-                        <div class="media mb-30 col-xl-12 col-lg-6 col-md-6 col-sm-12">
-                            <a class="img-opacity-hover" href="single-news-1.html">
-                                <img src="{{ asset('frontend/img/news/news309.jpg') }}" alt="news"
-                                    class="img-fluid">
-                            </a>
-                            <div class="media-body media-padding5">
-                                <div class="post-date-dark">
-                                    <ul>
-                                        <li>
-                                            <span>
-                                                <i class="fas fa-calendar" aria-hidden="true"></i>
-                                            </span>March 22, 2017
-                                        </li>
-                                    </ul>
+                        @foreach ($random_posts as $post)
+                            <div class="media mb-30 col-xl-12 col-lg-6 col-md-6 col-sm-12">
+                                <a class="img-opacity-hover"
+                                    href="{{ route('user.post.show', [$post->category->slug, $post->slug]) }}">
+                                    <img style="width:124px;height:88px" src="{{ asset($post->thumbnail) }}"
+                                        alt="news" class="img-fluid">
+                                </a>
+                                <div class="media-body media-padding5">
+                                    <div class="post-date-dark">
+                                        <ul>
+                                            <li>
+                                                <span>
+                                                    <i class="fas fa-calendar" aria-hidden="true"></i>
+                                                </span>{{ Carbon\Carbon::parse($post->created_at)->locale('az')->isoFormat('LLL') }}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <h3 class="title-medium-dark size-md mb-none">
+                                        <a
+                                            href="{{ route('user.post.show', [$post->category->slug, $post->slug]) }}">{{ Str::of($post->title)->limit(40) }}</a>
+                                    </h3>
                                 </div>
-                                <h3 class="title-medium-dark size-md mb-none">
-                                    <a href="single-news-2.html">Quick Tips: Cling Wrap Hack One Pot Chef</a>
-                                </h3>
                             </div>
-                        </div>
-                        <div class="media mb-30 col-xl-12 col-lg-6 col-md-6 col-sm-12">
-                            <a class="img-opacity-hover" href="single-news-1.html">
-                                <img src="{{ asset('frontend/img/news/news310.jpg') }}" alt="news"
-                                    class="img-fluid">
-                            </a>
-                            <div class="media-body media-padding5">
-                                <div class="post-date-dark">
-                                    <ul>
-                                        <li>
-                                            <span>
-                                                <i class="fas fa-calendar" aria-hidden="true"></i>
-                                            </span>March 22, 2017
-                                        </li>
-                                    </ul>
-                                </div>
-                                <h3 class="title-medium-dark size-md mb-none">
-                                    <a href="single-news-2.html">Cling Wrap Hack One Pot Chef</a>
-                                </h3>
-                            </div>
-                        </div>
-                        <div class="media mb-30 col-xl-12 col-lg-6 col-md-6 col-sm-12">
-                            <a class="img-opacity-hover" href="single-news-1.html">
-                                <img src="{{ asset('frontend/img/news/news311.jpg') }}" alt="news"
-                                    class="img-fluid">
-                            </a>
-                            <div class="media-body media-padding5">
-                                <div class="post-date-dark">
-                                    <ul>
-                                        <li>
-                                            <span>
-                                                <i class="fas fa-calendar" aria-hidden="true"></i>
-                                            </span>March 22, 2017
-                                        </li>
-                                    </ul>
-                                </div>
-                                <h3 class="title-medium-dark size-md mb-none">
-                                    <a href="single-news-2.html">Detoxifying Summer Drink Recipes</a>
-                                </h3>
-                            </div>
-                        </div>
-                        <div class="media mb-30 col-xl-12 col-lg-6 col-md-6 col-sm-12">
-                            <a class="img-opacity-hover" href="single-news-1.html">
-                                <img src="{{ asset('frontend/img/news/news312.jpg') }}" alt="news"
-                                    class="img-fluid">
-                            </a>
-                            <div class="media-body media-padding5">
-                                <div class="post-date-dark">
-                                    <ul>
-                                        <li>
-                                            <span>
-                                                <i class="fas fa-calendar" aria-hidden="true"></i>
-                                            </span>March 22, 2017
-                                        </li>
-                                    </ul>
-                                </div>
-                                <h3 class="title-medium-dark size-md mb-none">
-                                    <a href="single-news-2.html">Taylor Swift’s Stylish Separtes many.</a>
-                                </h3>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -186,28 +130,33 @@
     </div>
 </section>
 <!-- Slider Area End Here -->
-<!-- Popular Area Start Here -->
+<!-- Random 6 Posts Area Start Here -->
 <section class="section-space-bottom">
     <div class="container">
         <div class="item-box-light-md-less10">
             <div class="ne-isotope-all">
                 <div class="topic-border color-cinnabar mb-30">
-                    <div class="topic-box-lg color-cinnabar">Popular Recipes</div>
-                    <div class="isotope-classes-tab isotop-btn">
-                        <a href="#" data-filter="*" class="current">All</a>
-                        <a href="#" data-filter=".burger">Burger</a>
-                        <a href="#" data-filter=".desert">Desert</a>
-                        <a href="#" data-filter=".fast-food">Fast Food</a>
-                        <a href="#" data-filter=".drinks">Drinks</a>
+                    <div class="topic-box-lg color-cinnabar">Məqalələr</div>
+                    <div class="isotope-classes-tab isotop-btn mr-5">
+                        <button type="button" class="btn btn-link post-card-all" onclick="postCardAll()">Hamısı</button>
+                        @foreach ($categories->take(6) as $category)
+                            <button type="button" id="{{ $category->slug }}" class="btn btn-link post-card"
+                                style="text-decoration: none" onclick="postCard(this.id)">{{ $category->name }}
+                            </button>
+                        @endforeach
+                        {{-- <a href="#" data-filter=".desert">desert</a>
+                        <a href="#" data-filter=".drinks">drinks</a>
+                        <a href="#" data-filter=".fast-food">fast-food</a>
+                        <a href="#" data-filter=".desert">desert</a> --}}
                     </div>
                     <div class="more-info-link">
-                        <a href="post-style-1.html">More
+                        <a href="post-style-1.html">Daha çox
                             <i class="fas fa-angle-right" aria-hidden="true"></i>
                         </a>
                     </div>
                 </div>
-                <div class="row tab-space5 featuredContainer">
-                    <div class="col-lg-4 col-md-6 col-sm-6 col-12 burger">
+                <div class="row tab-space5 featuredContainer" id="postall">
+                    {{-- <div class="col-lg-4 col-md-6 col-sm-6 col-12 burger">
                         <div class="img-overlay-70 img-scale-animate mb-10">
                             <img src="{{ asset('frontend/img/news/news304.jpg') }}" alt="news"
                                 class="img-fluid width-100">
@@ -368,14 +317,64 @@
                                 </h3>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
     </div>
 </section>
 <!-- Popular Area End Here -->
-<!-- Latest Articles Area Start Here -->
+<!-- All Posts Area Start Here -->
+<section class="section-space-bottom">
+    <div class="container">
+        <div class="item-box-light-md-less10">
+            <div class="ne-isotope-all">
+                <div class="topic-border color-cinnabar mb-30">
+                    <div class="topic-box-lg color-cinnabar">Son Məqalələr</div>
+                    <div class="more-info-link">
+                        <a href="{{ route('user.post.latest') }}">Daha çox
+                            <i class="fas fa-angle-right" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="row tab-space5 featuredContainer">
+                    @foreach ($posts->sortByDesc('id')->take(6) as $post)
+                        <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                            <div class="img-overlay-70 img-scale-animate mb-10">
+                                <img style="width: 600px;height:220px;object-fit" src="{{ asset($post->thumbnail) }}"
+                                    alt="news" class="img-fluid width-100">
+                                <div class="topic-box-top-sm">
+                                    <div class="topic-box-sm color-cod-gray mb-20">{{ $post->category->name }}</div>
+                                </div>
+                                <div class="mask-content-xs">
+                                    <div class="post-date-light d-none d-md-block">
+                                        <ul>
+                                            <li>
+                                                <span>Yazar</span>
+                                                <a href="#">{{ $post->user->name }}</a>
+                                            </li>
+                                            <li>
+                                                <span>
+                                                    <i class="fas fa-calendar" aria-hidden="true"></i>
+                                                </span>{{ Carbon\Carbon::parse($post->created_at)->locale('az')->isoFormat('LLL') }}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <h3 class="title-medium-light size-lg">
+                                        <a
+                                            href="{{ route('user.post.show', [$post->category->slug, $post->slug]) }}">{{ Str::of($post->title)->limit(30) }}</a>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- All Posts Area Start Here -->
+<!-- Latest Comments Area Start Here -->
 <section class="section-space-bottom-less30">
     <div class="container">
         <div class="row">
@@ -832,7 +831,7 @@
                         <div class="content p-30-r">
                             <div class="ctg-title-xs">{{ $category->name }}</div>
                             <h3 class="title-regular-light size-lg">
-                                <a href="post-style-1.html">{{ $category->description }}</a>
+                                <a href="{{ route('user.post.index',$category->slug) }}">{{ $category->description }}</a>
                             </h3>
                             <div class="post-date-light d-block d-sm-none d-md-block">
                                 <ul>

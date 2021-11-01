@@ -89,7 +89,7 @@ $posts = App\Models\Post::orderByDesc('id')->take(3)->get();
                                 </li>
                                 <li>
                                     @auth
-                                        <a href="{{ route('user.loginForm') }}" class="login-btn">
+                                        <a href="{{ route('user.profile.index') }}" class="login-btn">
                                             <i class="fas fa-user" aria-hidden="true"></i>Hesabım
                                         </a>
                                     @else
