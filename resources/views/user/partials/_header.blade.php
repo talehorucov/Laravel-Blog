@@ -98,19 +98,6 @@ $posts = App\Models\Post::orderByDesc('id')->take(3)->get();
                                         </a>
                                     @endauth
                                 </li>
-                                <li>
-                                    <div id="side-menu-trigger" class="offcanvas-menu-btn offcanvas-btn-repoint">
-                                        <a href="#" class="menu-bar">
-                                            <span></span>
-                                            <span></span>
-                                            <span></span>
-                                        </a>
-                                        <a href="#" class="menu-times close">
-                                            <span></span>
-                                            <span></span>
-                                        </a>
-                                    </div>
-                                </li>
                             </ul>
                         </div>
                     </div>

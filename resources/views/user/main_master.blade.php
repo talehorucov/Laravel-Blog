@@ -27,10 +27,6 @@
         <!-- Footer Area Start Here -->
         @include('user.partials._footer')
         <!-- Footer Area End Here -->
-
-        <!-- Canvas Area Start Here -->
-        @include('user.partials._canvas')
-        <!-- Canvas Area End Here -->
     </div>
     <!-- JS Area Start Here -->
     @include('user.partials._js')

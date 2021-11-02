@@ -21,7 +21,7 @@ class MainController extends Controller
     {
         $comments = Comment::with('user','post.category')->take(4)->orderByDesc('id')->get();
         $posts = Post::with('category')->get();
-        $random_posts = Post::inRandomOrder()->limit(4)->get();
+        $random_posts = Post::with('category','user')->inRandomOrder()->limit(4)->get();
         $mostview_posts = Post::with('category')->orderByDesc('view_count')->limit(6)->get();
         $categories = Category::get();
         return view('user.index',compact('comments','random_posts','posts','mostview_posts','categories'));

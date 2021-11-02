@@ -39,7 +39,7 @@
                                             <span class="text-muted">{{ $post->user->name }}</span>
                                         </td>
                                         <td style="vertical-align:middle">
-                                            <span class="text-muted">{{ $post->title }}</span>
+                                            <span class="text-muted">{{ Str::of($post->title)->limit(20) }}</span>
                                         </td>
                                         <td>
                                             <span

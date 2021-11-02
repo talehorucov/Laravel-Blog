@@ -30,7 +30,7 @@ class PostController extends Controller
     {
         $image = $request->file('thumbnail');
         $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
-        Image::make($image)->resize(600, 300)->save('upload/posts/' . $image_name);
+        Image::make($image)->resize(1200, 814)->save('upload/posts/' . $image_name);
         $image_url = 'upload/posts/' . $image_name;
 
         $post = new Post();
@@ -69,7 +69,7 @@ class PostController extends Controller
         if ($request->thumbnail) {
             $image = $request->file('thumbnail');
             $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
-            Image::make($image)->resize(300, 300)->save('upload/posts/' . $image_name);
+            Image::make($image)->resize(1200, 814)->save('upload/posts/' . $image_name);
             $image_url = 'upload/posts/' . $image_name;
             unlink($post->thumbnail);
             $post->thumbnail = $image_url;
