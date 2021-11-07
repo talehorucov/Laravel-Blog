@@ -17,9 +17,8 @@ class CommentController extends Controller
             $comment->post_id = $request->id;
             $comment->content = $request->content;
             $comment->save();
-            return response()->json([
-                'comment' => $request->content
-            ]);
+            
+            return view('user.partials.comment',compact('comment'));
         }
     }
 }

@@ -1,7 +1,7 @@
 @extends('user.main_master')
 @section('content')
 @section('title')
-    {{ $category->name }}
+    {{ $title }}
 @endsection
 
 <section class="breadcrumbs-area"
@@ -13,7 +13,7 @@
                 <li>
                     <a href="/">Ana Səhifə</a> -
                 </li>
-                <li>{{ $category->name }} Məqalələri</li>
+                <li>{{ $title }} Başlıqlı Məqalələr</li>
             </ul>
         </div>
     </div>
@@ -29,12 +29,12 @@
                         <div class="col-xl-12 col-lg-6 col-md-6 col-sm-12">
                             <div class="media media-none--lg mb-30">
                                 <div class="position-relative width-40">
-                                    <a href="{{ route('user.post.show', [$category->slug, $post->slug]) }}"
+                                    <a href="{{ route('user.post.show', [$post->category->slug, $post->slug]) }}"
                                         class="img-opacity-hover img-overlay-70">
                                         <img src="{{ asset($post->thumbnail) }}" alt="news" class="img-fluid">
                                     </a>
                                     <div class="topic-box-top-xs">
-                                        <div class="topic-box-sm color-cod-gray mb-20">{{ $category->name }}</div>
+                                        <div class="topic-box-sm color-cod-gray mb-20">{{ $post->category->name }}</div>
                                     </div>
                                 </div>
                                 <div class="media-body p-mb-none-child media-margin30">
@@ -53,7 +53,7 @@
                                         </ul>
                                     </div>
                                     <h3 class="title-semibold-dark size-lg mb-15">
-                                        <a href="{{ route('user.post.show', [$category->slug, $post->slug]) }}">
+                                        <a href="{{ route('user.post.show', [$post->category->slug, $post->slug]) }}">
                                             {{ $post->title }}
                                         </a>
                                     </h3>

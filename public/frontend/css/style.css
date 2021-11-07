@@ -6308,6 +6308,21 @@ ul.blog-tags li:first-child {
     color:#e53935;
 }
 
+.swal2-title {
+    margin: 0px;
+    font-size: 36px;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.21);
+    margin-bottom: 28px;
+  }
+
+  .swal2-footer {
+    margin: 0px;
+    font-size: 36px;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.21);
+    margin-bottom: 28px;
+  }
+
+
 @media only screen and (max-width:767px) {
     .banner-content-style1 {
         bottom: 0

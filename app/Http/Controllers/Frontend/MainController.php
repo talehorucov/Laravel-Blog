@@ -19,12 +19,12 @@ class MainController extends Controller
 {
     public function index()
     {
-        $comments = Comment::with('user','post.category')->take(4)->orderByDesc('id')->get();
+        $comments = Comment::with('user', 'post.category')->take(4)->orderByDesc('id')->get();
         $posts = Post::with('category')->get();
-        $random_posts = Post::with('category','user')->inRandomOrder()->limit(4)->get();
+        $random_posts = Post::with('category', 'user')->inRandomOrder()->limit(4)->get();
         $mostview_posts = Post::with('category')->orderByDesc('view_count')->limit(6)->get();
         $categories = Category::get();
-        return view('user.index',compact('comments','random_posts','posts','mostview_posts','categories'));
+        return view('user.index', compact('comments', 'random_posts', 'posts', 'mostview_posts', 'categories'));
     }
 
     public function loginForm()
@@ -42,6 +42,19 @@ class MainController extends Controller
             return redirect()->route('user.index')->with($notification);
         }
         return redirect()->back()->with('error', 'Email və ya Şifrə yanlışdır');
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        $notification = [
+            'message' => 'Çıxış Edildi',
+            'alert-type' => 'success'
+        ];
+        return redirect()->route('user.login')->with($notification);
     }
 
     public function forgot_passwordForm()

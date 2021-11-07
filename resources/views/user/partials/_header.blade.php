@@ -1,6 +1,9 @@
 @php
 $categories = App\Models\Category::all();
-$posts = App\Models\Post::orderByDesc('id')->take(3)->get();
+$posts = App\Models\Post::with('category')
+    ->orderByDesc('id')
+    ->take(3)
+    ->get();
 @endphp
 <header>
     <div id="header-layout2" class="header-style7">
@@ -68,7 +71,8 @@ $posts = App\Models\Post::orderByDesc('id')->take(3)->get();
                                 <ul>
                                     @foreach ($categories->take(6) as $category)
                                         <li>
-                                            <a href="{{ route('user.post.index',$category->slug) }}">{{ $category->name }}</a>
+                                            <a
+                                                href="{{ route('user.post.index', $category->slug) }}">{{ $category->name }}</a>
                                         </li>
                                     @endforeach
                                 </ul>
@@ -79,9 +83,10 @@ $posts = App\Models\Post::orderByDesc('id')->take(3)->get();
                         <div class="header-action-item on-mobile-fixed">
                             <ul>
                                 <li>
-                                    <form id="top-search-form" class="header-search-dark">
-                                        <input type="text" class="search-input" placeholder="Search...." required=""
-                                            style="display: none;">
+                                    <form id="top-search-form" method="GET" action="{{ route('user.post.search') }}"
+                                        class="header-search-dark">
+                                        <input type="text" class="search-input" placeholder="Axtar..." required
+                                            style="display: none;" name="search">
                                         <button class="search-button">
                                             <i class="fas fa-search" aria-hidden="true"></i>
                                         </button>
@@ -89,9 +94,18 @@ $posts = App\Models\Post::orderByDesc('id')->take(3)->get();
                                 </li>
                                 <li>
                                     @auth
-                                        <a href="{{ route('user.profile.index') }}" class="login-btn">
-                                            <i class="fas fa-user" aria-hidden="true"></i>Hesabım
-                                        </a>
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-danger btn-lg dropdown-toggle"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Hesabım
+                                            </button>
+                                            <div style="font-size: 13px" class="dropdown-menu">
+                                                <a class="dropdown-item"
+                                                    href="{{ route('user.profile.index') }}">Hesabım</a>
+                                                <div class="dropdown-divider"></div>
+                                                <a class="dropdown-item" href="{{ route('user.logout') }}">Çıxış</a>
+                                            </div>
+                                        </div>
                                     @else
                                         <a href="{{ route('user.loginForm') }}" class="login-btn">
                                             <i class="fas fa-user" aria-hidden="true"></i>Daxil Ol
@@ -119,7 +133,8 @@ $posts = App\Models\Post::orderByDesc('id')->take(3)->get();
                     <ol id="sample" class="ticker">
                         @foreach ($posts as $post)
                             <li>
-                                <a href="#">{{ $post->title }}</a>
+                                <a
+                                    href="{{ route('user.post.show', [$post->category->slug, $post->slug]) }}">{{ $post->title }}</a>
                             </li>
                         @endforeach
                     </ol>

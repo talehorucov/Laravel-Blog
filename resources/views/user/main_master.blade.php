@@ -30,17 +30,6 @@
     </div>
     <!-- JS Area Start Here -->
     @include('user.partials._js')
-    <script>
-        function postCardAll() {
-            $.ajax({
-                type: 'GET',
-                url: '{{ route('user.post.all') }}',
-                success: (res) => {
-                    $('#postall').html(res)
-                }
-            })
-        }
-    </script>
     <!-- JS Area End Here -->
 </body>
 

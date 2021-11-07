@@ -54,29 +54,44 @@
                             <a href="#">
                                 <i class="fa fa-comments" aria-hidden="true"></i>{{ $post->comments_count }}</a>
                         </li>
+                        <li>
+                            <a href="#">
+                                <i class="fas fa-star" aria-hidden="true"></i><span
+                                    class="like-count">{{ $post->stars_count }}</span> </a>
+                        </li>
                     </ul>
                     {!! $post->content !!}
                     <ul class="blog-tags item-inline">
                         <li>Etiketlər</li>
-                        @foreach ($post->tags as $tag)
+                        @foreach ($post->tags->take(6) as $tag)
                             <li>
-                                <a href="#">#{{ $tag->name }}</a>
+                                <a href="{{ route('user.post.tag.index', $tag->slug) }}">#{{ $tag->name }}</a>
                             </li>
                         @endforeach
+                        <li style="float: right">
+                            <button id="like" class="btn-lg btn-primary" type="submit"><i
+                                    class="fas fa-star"></i>{{ $check_star ? 'Bəyənmə' : 'Bəyən' }}</button>
+                        </li>
                     </ul>
                     <div class="row no-gutters divider blog-post-slider">
                         <div class="col-lg-6 col-md-6 col-sm-6 col-6">
-                            <a href="#" class="prev-article">
-                                <i class="fa fa-angle-left" aria-hidden="true"></i>Previous article</a>
-                            <h3 class="title-medium-dark pr-50">Wonderful Outdoors Experience: Eagle Spotting in Alaska
-                            </h3>
+                            @isset($previousPost)
+                                <a href="{{ route('user.post.show', [$previousPost->category->slug, $previousPost->slug]) }}"
+                                    class="prev-article">
+                                    <i class="fa fa-angle-left" aria-hidden="true"></i>Öncəki Məqalə</a>
+                                <h3 class="title-medium-dark pr-50">{{ $previousPost->title }}
+                                </h3>
+                            @endisset
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-6 text-right">
-                            <a href="#" class="next-article">Next article
-                                <i class="fa fa-angle-right" aria-hidden="true"></i>
-                            </a>
-                            <h3 class="title-medium-dark pl-50">The only thing that overcomes hard luck is hard work
-                            </h3>
+                            @isset($nextPost)
+                                <a href="{{ route('user.post.show', [$nextPost->category->slug, $nextPost->slug]) }}"
+                                    class="next-article">Növbəti Məqalə
+                                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                </a>
+                                <h3 class="title-medium-dark pl-50">{{ $nextPost->title }}
+                                </h3>
+                            @endisset
                         </div>
                     </div>
                     <div class="author-info p-35-r mb-50 border-all">
@@ -87,40 +102,14 @@
                                 <h3 class="size-lg mb-5">{{ $post->user->name }}</h3>
                                 <div class="post-by mb-5">Vəzifə: {{ $post->user->role->name }}</div>
                                 <p class="mb-15">
-                                    {{ auth()->user()->about }}
+                                    {{ $post->user->about }}
                                 </p>
-                                <ul class="author-social-style2 item-inline">
-                                    <li>
-                                        <a href="#" title="facebook">
-                                            <i class="fa fa-facebook" aria-hidden="true"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" title="twitter">
-                                            <i class="fa fa-twitter" aria-hidden="true"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" title="google-plus">
-                                            <i class="fa fa-google-plus" aria-hidden="true"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" title="linkedin">
-                                            <i class="fa fa-linkedin" aria-hidden="true"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" title="pinterest">
-                                            <i class="fa fa-pinterest" aria-hidden="true"></i>
-                                        </a>
-                                    </li>
-                                </ul>
                             </div>
                         </div>
                     </div>
                     <div class="comments-area">
-                        <h2 class="title-semibold-dark size-xl border-bottom mb-40 pb-20">{{ $post->comments->count() }} Rəy mövcuddur</h2>
+                        <h2 class="title-semibold-dark size-xl border-bottom mb-40 pb-20">
+                            {{ $post->comments->count() }} Rəy mövcuddur</h2>
                         @foreach ($post->comments as $comment)
                             <ul>
                                 <li>
@@ -145,22 +134,21 @@
                     </div>
                     <div class="leave-comments">
                         <h2 class="title-semibold-dark size-xl mb-40">Rəy Bildirin</h2>
-                        <form>
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <textarea placeholder="Rəyiniz..." class="form-control" id="form-message"
-                                            rows="8" cols="20"></textarea>
-                                        <div class="help-block with-errors"></div>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-group mb-none">
-                                        <button id="send-comment" type="submit" class="btn-ftg-ptp-45 float-right">Göndər</button>
-                                    </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <textarea placeholder="Rəyiniz..." class="form-control" id="form-message" rows="8"
+                                        cols="20"></textarea>
+                                    <div class="help-block with-errors"></div>
                                 </div>
                             </div>
-                        </form>
+                            <div class="col-12">
+                                <div class="form-group mb-none">
+                                    <button id="send-comment" type="submit"
+                                        class="btn-ftg-ptp-45 float-right">Göndər</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -170,96 +158,27 @@
                         <div class="topic-box-lg color-cod-gray">Bənzər Məqalələr</div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-6 col-md-4 col-sm-6 col-6">
-                            <div class="mt-25 position-relative">
-                                <div class="topic-box-top-xs">
-                                    <div class="topic-box-sm color-cod-gray mb-20">Nature</div>
+                        @foreach ($similar_posts as $post)
+                            <div class="col-lg-6 col-md-4 col-sm-6 col-6">
+                                <div class="mt-25 position-relative">
+                                    <div class="topic-box-top-xs">
+                                        <div class="topic-box-sm color-cod-gray mb-20">{{ $post->category->name }}
+                                        </div>
+                                    </div>
+                                    <a href="{{ route('user.post.show', [$post->category->slug, $post->slug]) }}"
+                                        class="mb-10 display-block img-opacity-hover">
+                                        <img style="width: 150px; height:120px" src="{{ asset($post->thumbnail) }}"
+                                            alt="ad" class="img-fluid m-auto width-100">
+                                    </a>
+                                    <h3 class="title-medium-dark size-md mb-none">
+                                        <a
+                                            href="{{ route('user.post.show', [$post->category->slug, $post->slug]) }}">
+                                            {{ Str::of($post->title)->limit(20) }}
+                                        </a>
+                                    </h3>
                                 </div>
-                                <a href="single-news-1.html" class="mb-10 display-block img-opacity-hover">
-                                    <img src="{{ asset('frontend/img/news/news171.jpg') }}" alt="ad"
-                                        class="img-fluid m-auto width-100">
-                                </a>
-                                <h3 class="title-medium-dark size-md mb-none">
-                                    <a href="single-news-1.html">Rosie Huntington Whitl Habits Career Art.Rosie TBeauty
-                                        Habits.</a>
-                                </h3>
                             </div>
-                        </div>
-                        <div class="col-lg-6 col-md-4 col-sm-6 col-6">
-                            <div class="mt-25 position-relative">
-                                <div class="topic-box-top-xs">
-                                    <div class="topic-box-sm color-cod-gray mb-20">Application</div>
-                                </div>
-                                <a href="single-news-1.html" class="mb-10 display-block img-opacity-hover">
-                                    <img src="{{ asset('frontend/img/news/news172.jpg') }}" alt="ad"
-                                        class="img-fluid m-auto width-100">
-                                </a>
-                                <h3 class="title-medium-dark size-md mb-none">
-                                    <a href="single-news-1.html">Rosie Huntington Whitl Habits Career Art.Rosie TBeauty
-                                        Habits.</a>
-                                </h3>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-4 col-sm-6 col-6">
-                            <div class="mt-25 position-relative">
-                                <div class="topic-box-top-xs">
-                                    <div class="topic-box-sm color-cod-gray mb-20">Life Style</div>
-                                </div>
-                                <a href="single-news-1.html" class="mb-10 display-block img-opacity-hover">
-                                    <img src="{{ asset('frontend/img/news/news173.jpg') }}" alt="ad"
-                                        class="img-fluid m-auto width-100">
-                                </a>
-                                <h3 class="title-medium-dark size-md mb-none">
-                                    <a href="single-news-1.html">Rosie Huntington Whitl Habits Career Art.Rosie TBeauty
-                                        Habits.</a>
-                                </h3>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-4 col-sm-6 col-6">
-                            <div class="mt-25 position-relative">
-                                <div class="topic-box-top-xs">
-                                    <div class="topic-box-sm color-cod-gray mb-20">Technology</div>
-                                </div>
-                                <a href="single-news-1.html" class="mb-10 display-block img-opacity-hover">
-                                    <img src="{{ asset('frontend/img/news/news174.jpg') }}" alt="ad"
-                                        class="img-fluid m-auto width-100">
-                                </a>
-                                <h3 class="title-medium-dark size-md mb-none">
-                                    <a href="single-news-1.html">Rosie Huntington Whitl Habits Career Art.Rosie TBeauty
-                                        Habits.</a>
-                                </h3>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-4 col-sm-6 col-6">
-                            <div class="mt-25 position-relative">
-                                <div class="topic-box-top-xs">
-                                    <div class="topic-box-sm color-cod-gray mb-20">Accessories</div>
-                                </div>
-                                <a href="single-news-1.html" class="mb-10 display-block img-opacity-hover">
-                                    <img src="{{ asset('frontend/img/news/news175.jpg') }}" alt="ad"
-                                        class="img-fluid m-auto width-100">
-                                </a>
-                                <h3 class="title-medium-dark size-md mb-none">
-                                    <a href="single-news-1.html">Rosie Huntington Whitl Habits Career Art.Rosie TBeauty
-                                        Habits.</a>
-                                </h3>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-4 col-sm-6 col-6">
-                            <div class="mt-25 position-relative">
-                                <div class="topic-box-top-xs">
-                                    <div class="topic-box-sm color-cod-gray mb-20">Model</div>
-                                </div>
-                                <a href="single-news-1.html" class="mb-10 display-block img-opacity-hover">
-                                    <img src="{{ asset('frontend/img/news/news176.jpg') }}" alt="ad"
-                                        class="img-fluid m-auto width-100">
-                                </a>
-                                <h3 class="title-medium-dark size-md mb-none">
-                                    <a href="single-news-1.html">Rosie Huntington Whitl Habits Career Art.Rosie TBeauty
-                                        Habits.</a>
-                                </h3>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
                 <div class="sidebar-box">
@@ -267,96 +186,27 @@
                         <div class="topic-box-lg color-cod-gray">Ən Son Məqalələr</div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-6 col-md-4 col-sm-6 col-6">
-                            <div class="mt-25 position-relative">
-                                <div class="topic-box-top-xs">
-                                    <div class="topic-box-sm color-cod-gray mb-20">Nature</div>
+                        @foreach ($latest_posts as $post)
+                            <div class="col-lg-6 col-md-4 col-sm-6 col-6">
+                                <div class="mt-25 position-relative">
+                                    <div class="topic-box-top-xs">
+                                        <div class="topic-box-sm color-cod-gray mb-20">{{ $post->category->name }}
+                                        </div>
+                                    </div>
+                                    <a href="{{ route('user.post.show', [$post->category->slug, $post->slug]) }}"
+                                        class="mb-10 display-block img-opacity-hover">
+                                        <img style="width: 150px; height:120px" src="{{ asset($post->thumbnail) }}"
+                                            alt="ad" class="img-fluid m-auto width-100">
+                                    </a>
+                                    <h3 class="title-medium-dark size-md mb-none">
+                                        <a
+                                            href="{{ route('user.post.show', [$post->category->slug, $post->slug]) }}">
+                                            {{ Str::of($post->title)->limit(20) }}
+                                        </a>
+                                    </h3>
                                 </div>
-                                <a href="single-news-1.html" class="mb-10 display-block img-opacity-hover">
-                                    <img src="{{ asset('frontend/img/news/news171.jpg') }}" alt="ad"
-                                        class="img-fluid m-auto width-100">
-                                </a>
-                                <h3 class="title-medium-dark size-md mb-none">
-                                    <a href="single-news-1.html">Rosie Huntington Whitl Habits Career Art.Rosie TBeauty
-                                        Habits.</a>
-                                </h3>
                             </div>
-                        </div>
-                        <div class="col-lg-6 col-md-4 col-sm-6 col-6">
-                            <div class="mt-25 position-relative">
-                                <div class="topic-box-top-xs">
-                                    <div class="topic-box-sm color-cod-gray mb-20">Application</div>
-                                </div>
-                                <a href="single-news-1.html" class="mb-10 display-block img-opacity-hover">
-                                    <img src="{{ asset('frontend/img/news/news172.jpg') }}" alt="ad"
-                                        class="img-fluid m-auto width-100">
-                                </a>
-                                <h3 class="title-medium-dark size-md mb-none">
-                                    <a href="single-news-1.html">Rosie Huntington Whitl Habits Career Art.Rosie TBeauty
-                                        Habits.</a>
-                                </h3>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-4 col-sm-6 col-6">
-                            <div class="mt-25 position-relative">
-                                <div class="topic-box-top-xs">
-                                    <div class="topic-box-sm color-cod-gray mb-20">Life Style</div>
-                                </div>
-                                <a href="single-news-1.html" class="mb-10 display-block img-opacity-hover">
-                                    <img src="{{ asset('frontend/img/news/news173.jpg') }}" alt="ad"
-                                        class="img-fluid m-auto width-100">
-                                </a>
-                                <h3 class="title-medium-dark size-md mb-none">
-                                    <a href="single-news-1.html">Rosie Huntington Whitl Habits Career Art.Rosie TBeauty
-                                        Habits.</a>
-                                </h3>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-4 col-sm-6 col-6">
-                            <div class="mt-25 position-relative">
-                                <div class="topic-box-top-xs">
-                                    <div class="topic-box-sm color-cod-gray mb-20">Technology</div>
-                                </div>
-                                <a href="single-news-1.html" class="mb-10 display-block img-opacity-hover">
-                                    <img src="{{ asset('frontend/img/news/news174.jpg') }}" alt="ad"
-                                        class="img-fluid m-auto width-100">
-                                </a>
-                                <h3 class="title-medium-dark size-md mb-none">
-                                    <a href="single-news-1.html">Rosie Huntington Whitl Habits Career Art.Rosie TBeauty
-                                        Habits.</a>
-                                </h3>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-4 col-sm-6 col-6">
-                            <div class="mt-25 position-relative">
-                                <div class="topic-box-top-xs">
-                                    <div class="topic-box-sm color-cod-gray mb-20">Accessories</div>
-                                </div>
-                                <a href="single-news-1.html" class="mb-10 display-block img-opacity-hover">
-                                    <img src="{{ asset('frontend/img/news/news175.jpg') }}" alt="ad"
-                                        class="img-fluid m-auto width-100">
-                                </a>
-                                <h3 class="title-medium-dark size-md mb-none">
-                                    <a href="single-news-1.html">Rosie Huntington Whitl Habits Career Art.Rosie TBeauty
-                                        Habits.</a>
-                                </h3>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-4 col-sm-6 col-6">
-                            <div class="mt-25 position-relative">
-                                <div class="topic-box-top-xs">
-                                    <div class="topic-box-sm color-cod-gray mb-20">Model</div>
-                                </div>
-                                <a href="single-news-1.html" class="mb-10 display-block img-opacity-hover">
-                                    <img src="{{ asset('frontend/img/news/news176.jpg') }}" alt="ad"
-                                        class="img-fluid m-auto width-100">
-                                </a>
-                                <h3 class="title-medium-dark size-md mb-none">
-                                    <a href="single-news-1.html">Rosie Huntington Whitl Habits Career Art.Rosie TBeauty
-                                        Habits.</a>
-                                </h3>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
                 <div class="sidebar-box">
@@ -366,7 +216,7 @@
                     <ul class="sidebar-tags">
                         @foreach ($tags as $tag)
                             <li>
-                                <a href="#">{{ $tag->name }}</a>
+                                <a href="{{ route('user.post.tag.index', $tag->slug) }}">{{ $tag->name }}</a>
                             </li>
                         @endforeach
                     </ul>
@@ -375,131 +225,35 @@
                     <div class="topic-border color-cod-gray mb-30">
                         <div class="topic-box-lg color-cod-gray">Ən Çox Oxunanlar</div>
                     </div>
-                    <div class="position-relative mb30-list bg-body">
-                        <div class="topic-box-top-xs">
-                            <div class="topic-box-sm color-cod-gray mb-20">Apple</div>
-                        </div>
-                        <div class="media">
-                            <a class="img-opacity-hover" href="single-news-1.html">
-                                <img src="{{ asset('frontend/img/news/news117.jpg') }}" alt="news"
-                                    class="img-fluid">
-                            </a>
-                            <div class="media-body">
-                                <div class="post-date-dark">
-                                    <ul>
-                                        <li>
-                                            <span>
-                                                <i class="fa fa-calendar" aria-hidden="true"></i>
-                                            </span>February 10, 2017
-                                        </li>
-                                    </ul>
+                    @foreach ($mostview_posts as $post)
+                        <div class="position-relative mb30-list bg-body">
+                            <div class="topic-box-top-xs">
+                                <div class="topic-box-sm color-cod-gray mb-20">{{ $post->category->name }}</div>
+                            </div>
+                            <div class="media">
+                                <a class="img-opacity-hover"
+                                    href="{{ route('user.post.show', [$post->category->slug, $post->slug]) }}">
+                                    <img style="width: 150px; height:120px" src="{{ asset($post->thumbnail) }}"
+                                        alt="news" class="img-fluid">
+                                </a>
+                                <div class="media-body">
+                                    <div class="post-date-dark">
+                                        <ul>
+                                            <li>
+                                                <span>
+                                                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                </span>{{ Carbon\Carbon::parse($post->created_at)->locale('az')->isoFormat('LL') }}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <h3 class="title-medium-dark mb-none">
+                                        <a
+                                            href="{{ route('user.post.show', [$post->category->slug, $post->slug]) }}">{{ Str::of($post->title) }}</a>
+                                    </h3>
                                 </div>
-                                <h3 class="title-medium-dark mb-none">
-                                    <a href="single-news-2.html">Can Be Monit roade year with Program.</a>
-                                </h3>
                             </div>
                         </div>
-                    </div>
-                    <div class="position-relative mb30-list bg-body">
-                        <div class="topic-box-top-xs">
-                            <div class="topic-box-sm color-cod-gray mb-20">Gadgets</div>
-                        </div>
-                        <div class="media">
-                            <a class="img-opacity-hover" href="single-news-2.html">
-                                <img src="{{ asset('frontend/img/news/news118.jpg') }}" alt="news"
-                                    class="img-fluid">
-                            </a>
-                            <div class="media-body">
-                                <div class="post-date-dark">
-                                    <ul>
-                                        <li>
-                                            <span>
-                                                <i class="fa fa-calendar" aria-hidden="true"></i>
-                                            </span>June 06, 2017
-                                        </li>
-                                    </ul>
-                                </div>
-                                <h3 class="title-medium-dark mb-none">
-                                    <a href="single-news-3.html">Can Be Monit roade year with Program.</a>
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="position-relative mb30-list bg-body">
-                        <div class="topic-box-top-xs">
-                            <div class="topic-box-sm color-cod-gray mb-20">Software</div>
-                        </div>
-                        <div class="media">
-                            <a class="img-opacity-hover" href="single-news-3.html">
-                                <img src="{{ asset('frontend/img/news/news119.jpg') }}" alt="news"
-                                    class="img-fluid">
-                            </a>
-                            <div class="media-body">
-                                <div class="post-date-dark">
-                                    <ul>
-                                        <li>
-                                            <span>
-                                                <i class="fa fa-calendar" aria-hidden="true"></i>
-                                            </span>August 22, 2017
-                                        </li>
-                                    </ul>
-                                </div>
-                                <h3 class="title-medium-dark mb-none">
-                                    <a href="single-news-1.html">Can Be Monit roade year with Program.</a>
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="position-relative mb30-list bg-body">
-                        <div class="topic-box-top-xs">
-                            <div class="topic-box-sm color-cod-gray mb-20">Tech</div>
-                        </div>
-                        <div class="media">
-                            <a class="img-opacity-hover" href="single-news-1.html">
-                                <img src="{{ asset('frontend/img/news/news120.jpg') }}" alt="news"
-                                    class="img-fluid">
-                            </a>
-                            <div class="media-body">
-                                <div class="post-date-dark">
-                                    <ul>
-                                        <li>
-                                            <span>
-                                                <i class="fa fa-calendar" aria-hidden="true"></i>
-                                            </span>February 10, 2017
-                                        </li>
-                                    </ul>
-                                </div>
-                                <h3 class="title-medium-dark mb-none">
-                                    <a href="single-news-2.html">Can Be Monit roade year with Program.</a>
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="position-relative mb30-list bg-body">
-                        <div class="topic-box-top-xs">
-                            <div class="topic-box-sm color-cod-gray mb-20">Ipad</div>
-                        </div>
-                        <div class="media">
-                            <a class="img-opacity-hover" href="single-news-1.html">
-                                <img src="{{ asset('frontend/img/news/news121.jpg') }}" alt="news"
-                                    class="img-fluid">
-                            </a>
-                            <div class="media-body">
-                                <div class="post-date-dark">
-                                    <ul>
-                                        <li>
-                                            <span>
-                                                <i class="fa fa-calendar" aria-hidden="true"></i>
-                                            </span>February 10, 2017
-                                        </li>
-                                    </ul>
-                                </div>
-                                <h3 class="title-medium-dark mb-none">
-                                    <a href="single-news-2.html">Can Be Monit roade year with Program.</a>
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>

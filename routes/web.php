@@ -61,9 +61,10 @@ Route::group(
     function () {
         Route::get('/categories', [FrontendCategoryController::class, 'index'])->name('category.index');
         Route::get('/posts', [FrontendPostController::class, 'latest_posts'])->name('post.latest');
-        Route::get('/posts/all', [FrontendPostController::class, 'post_all'])->name('post.all');
         Route::get('/posts/category/{category_slug}', [FrontendPostController::class, 'index'])->name('post.index');
         Route::get('/posts/category/{category_slug}/{slug}', [FrontendPostController::class, 'show'])->name('post.show');
+        Route::get('/posts/tag/{tag_slug}', [FrontendPostController::class, 'tag_posts'])->name('post.tag.index');
+        Route::get('/post/search', [FrontendPostController::class, 'search'])->name('post.search');
 
         Route::prefix('my/account')->group(function () {
             Route::get('/', [FrontendProfileController::class, 'index'])->name('profile.index');
@@ -71,17 +72,15 @@ Route::group(
             Route::post('/update/{user}', [FrontendProfileController::class, 'update'])->name('profile.update');
         });
 
-        Route::prefix('comment')->group(function () {
-            Route::post('/add', [CommentController::class, 'store'])->name('comment.store.ajax');
-            Route::get('/edit', [FrontendProfileController::class, 'edit'])->name('profile.edit');
-            Route::post('/update/{user}', [FrontendProfileController::class, 'update'])->name('profile.update');
-        });
+        Route::post('/comment/add', [CommentController::class, 'store'])->name('comment.store.ajax');
+        Route::post('/post/like', [FrontendPostController::class, 'like'])->name('like.store.ajax');
     }
 );
 
 Route::get('/', [FrontendMainController::class, 'index'])->name('user.index');
 Route::get('/login', [FrontendMainController::class, 'loginForm'])->name('user.loginForm');
 Route::post('/login', [FrontendMainController::class, 'login'])->name('user.login');
+Route::get('/logout', [FrontendMainController::class, 'logout'])->name('user.logout');
 Route::get('/register', [FrontendMainController::class, 'registerForm'])->name('user.registerForm');
 Route::post('/register', [FrontendMainController::class, 'register'])->name('user.register');
 Route::get('/forgot-password', [FrontendMainController::class, 'forgot_passwordForm'])->name('user.forgot.passwordForm');

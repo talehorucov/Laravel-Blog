@@ -233,31 +233,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="row mt-20-r mb-30">
-                    <div class="col-sm-6 col-12">
-                        <div class="pagination-btn-wrapper text-center--xs mb15--xs">
-                            <ul>
-                                <li class="active">
-                                    <a href="#">1</a>
-                                </li>
-                                <li>
-                                    <a href="#">2</a>
-                                </li>
-                                <li>
-                                    <a href="#">3</a>
-                                </li>
-                                <li>
-                                    <a href="#">4</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-12">
-                        <div class="pagination-result text-right pt-10 text-center--xs">
-                            <p class="mb-none">Page 1 of 4</p>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
