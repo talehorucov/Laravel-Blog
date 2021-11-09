@@ -24,8 +24,8 @@
                 enabled: !0
             }
         })
-    }), e(document).on("click", "#top-search-form .search-button", function (a) {
-        return a.preventDefault(), e(this).prev("input.search-input").animate({
+    }), e(document).on("click", "#search-button", function (a) {
+        return a.preventDefault(), e("#search-input").animate({
             width: ["toggle", "swing"],
             height: ["toggle", "swing"],
             opacity: "toggle"

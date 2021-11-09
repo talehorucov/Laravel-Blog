@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Frontend;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Post;
+use App\Models\Star;
 use Illuminate\Support\Facades\Hash;
 use Intervention\Image\Facades\Image;
 
@@ -12,7 +14,8 @@ class ProfileController extends Controller
 {
     public function index()
     {
-        return view('user.profile.index');
+        $posts = Post::has('star')->with('category','star')->get();
+        return view('user.profile.index',compact('posts'));
     }
 
     public function edit()

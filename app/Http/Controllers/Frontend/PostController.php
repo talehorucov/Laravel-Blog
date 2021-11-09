@@ -94,8 +94,7 @@ class PostController extends Controller
 
     public function search(Request $request)
     {
-        return $request;
-        $title = $request->search();
+        $title = $request->search;
         $posts = Post::with('user', 'tags', 'category')->where('title', 'LIKE', "%$title%")->get();
         $tags = Tag::get();
         return view('user.post.search', compact('posts', 'tags', 'title'));

@@ -51,7 +51,6 @@
                                             @else
                                                 <span class="badge badge-pill badge-success">Aktiv</span>
                                             @endif
-
                                         </td>
                                         <td>
                                             <a href="{{ route('admin.posts.edit', $post) }}"
@@ -64,7 +63,7 @@
                                             </a>
                                             @if ($post->publish == 0)
                                                 <a href="{{ route('admin.posts.active', $post) }}"
-                                                    class="btn btn-success btn-outline btn-circle btn-lg m-r-5 delete">
+                                                    class="btn btn-success btn-outline btn-circle btn-lg m-r-5 publish">
                                                     <i class="ti-stats-up"></i>
                                                 </a>
                                             @else
@@ -74,7 +73,7 @@
                                                 </a>
                                             @endif
                                             <a href="{{ route('admin.posts.destroy', $post) }}"
-                                                class="btn btn-danger btn-outline btn-circle btn-lg m-r-5 publish">
+                                                class="btn btn-danger btn-outline btn-circle btn-lg m-r-5 delete">
                                                 <i class="ti-trash"></i>
                                             </a>
                                         </td>

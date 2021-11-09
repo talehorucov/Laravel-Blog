@@ -54,4 +54,9 @@ class Post extends Model
     {
         return $this->hasMany(Star::class);
     }
+
+    public function star()
+    {
+        return $this->hasOne(Star::class)->where('user_id',auth()->user()->id);
+    }
 }

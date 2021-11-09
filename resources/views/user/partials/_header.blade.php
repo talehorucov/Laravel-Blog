@@ -85,12 +85,12 @@ $posts = App\Models\Post::with('category')
                                 <li>
                                     <form id="top-search-form" method="GET" action="{{ route('user.post.search') }}"
                                         class="header-search-dark">
-                                        <input type="text" class="search-input" placeholder="Axtar..." required
+                                        <input id="search-input" type="text" class="search-input" placeholder="Axtar..." required
                                             style="display: none;" name="search">
-                                        <button class="search-button">
-                                            <i class="fas fa-search" aria-hidden="true"></i>
-                                        </button>
                                     </form>
+                                    <button id="search-button" class="search-button">
+                                        <i class="fas fa-search" aria-hidden="true"></i>
+                                    </button>
                                 </li>
                                 <li>
                                     @auth

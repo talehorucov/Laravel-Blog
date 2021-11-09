@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Models\Post;
 use App\Models\User;
+use App\Models\Comment;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -12,7 +15,15 @@ class MainController extends Controller
 {
     public function index(Request $request)
     {
-        return view('admin.index');
+        $user_count = User::count();
+        $viewpost_count = Post::sum('view_count');
+        $post_count = Post::count();
+        $category_count = Category::count();
+        $new_users = User::orderByDesc('id')->limit(5)->get();
+        $new_posts = Post::with('user')->orderByDesc('id')->limit(15)->get();
+        $new_comments = Comment::with('user')->orderByDesc('id')->limit(4)->get();
+        $categories = Category::get();
+        return view('admin.index', compact('user_count', 'viewpost_count', 'post_count', 'category_count', 'new_users', 'new_posts', 'new_comments', 'categories'));
     }
 
     public function loginForm()

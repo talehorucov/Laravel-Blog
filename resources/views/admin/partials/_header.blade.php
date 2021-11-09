@@ -27,12 +27,6 @@
             </li>
         </ul>
         <ul class="nav navbar-top-links navbar-right pull-right">
-            <li>
-                <form role="search" class="app-search hidden-sm hidden-xs m-r-10">
-                    <input type="text" placeholder="Axtar..." class="form-control"> <a href=""><i
-                            class="fa fa-search"></i></a>
-                </form>
-            </li>
             <li class="dropdown">
                 <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#"> <img
                         src="{{ !empty(auth()->user()->image) ? asset(auth()->user()->image) : url('backend/plugins/images/default.jpg') }}"

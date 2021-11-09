@@ -70,7 +70,7 @@
                         @endforeach
                         <li style="float: right">
                             <button id="like" class="btn-lg btn-primary" type="submit"><i
-                                    class="fas fa-star"></i>{{ $check_star ? 'Bəyənmə' : 'Bəyən' }}</button>
+                                    class="fas fa-star"></i>{{ $check_star ? ' Bəyənmə' : ' Bəyən' }}</button>
                         </li>
                     </ul>
                     <div class="row no-gutters divider blog-post-slider">
